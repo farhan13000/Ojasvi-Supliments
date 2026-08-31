@@ -1,0 +1,16 @@
+{
+  "name": "Ojasvi Ayurveda — Stamina Booster",
+  "short_name": "Ojasvi",
+  "description": "100% natural Ayurvedic stamina booster for adults.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf3e3",
+  "theme_color": "#123524",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
