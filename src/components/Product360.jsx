@@ -1,6 +1,7 @@
 import { useCallback, useId, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion'
 import { RotateCw, Sparkles } from 'lucide-react'
+import { product } from '../data/product'
 
 function randomSparkle() {
   const angle = Math.random() * Math.PI * 2
@@ -14,7 +15,7 @@ function randomSparkle() {
   }
 }
 
-export default function Product360({ productName = 'Ojasvi Stamina Booster' }) {
+export default function Product360({ productName = `Ojasvi ${product.name}` }) {
   const uid = useId()
   const rotateY = useMotionValue(0)
   const draggingRef = useRef(false)
@@ -97,7 +98,7 @@ export default function Product360({ productName = 'Ojasvi Stamina Booster' }) {
           className="perspective-1200 relative h-[340px] w-[300px] cursor-grab touch-none active:cursor-grabbing sm:h-[420px] sm:w-[380px]"
           role="button"
           tabIndex={0}
-          aria-label="Ojasvi Stamina Booster product package — drag or press Enter to rotate 360 degrees"
+          aria-label={`${productName} product package — drag or press Enter to rotate 360 degrees`}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -213,11 +214,8 @@ function PackageArt({ uid, name }) {
         <text x="112" y="150" fill="#e6c458" fontSize="14" fontFamily="Marcellus, serif" transform="skewY(-11)">
           OJASVI
         </text>
-        <text x="112" y="172" fill="#fbf3e3" fontSize="8.5" fontFamily="Poppins, sans-serif" transform="skewY(-11)">
-          STAMINA
-        </text>
-        <text x="112" y="184" fill="#fbf3e3" fontSize="8.5" fontFamily="Poppins, sans-serif" transform="skewY(-11)">
-          BOOSTER
+        <text x="112" y="180" fill="#fbf3e3" fontSize="10" fontFamily="Poppins, sans-serif" fontWeight="600" transform="skewY(-11)">
+          STRENGTH+
         </text>
         <circle cx="145" cy="220" r="18" fill="none" stroke="#c9a227" strokeWidth="1.5" transform="skewY(-11)" />
         <text
@@ -248,8 +246,8 @@ function PackageArt({ uid, name }) {
           OJASVI
         </text>
         <line x1="42" y1="172" x2="78" y2="172" stroke="#c9a227" strokeWidth="1.2" />
-        <text x="60" y="188" textAnchor="middle" fill="#7a1f2b" fontSize="8" fontFamily="Poppins, sans-serif" fontWeight="600">
-          STAMINA BOOSTER
+        <text x="60" y="189" textAnchor="middle" fill="#7a1f2b" fontSize="11" fontFamily="Poppins, sans-serif" fontWeight="700">
+          STRENGTH+
         </text>
         <text x="60" y="200" textAnchor="middle" fill="#3a3226" fontSize="6.5" fontFamily="Poppins, sans-serif">
           Ayurvedic Vitality Capsules

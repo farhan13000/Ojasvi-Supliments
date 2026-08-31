@@ -1,7 +1,7 @@
 export const faqs = [
   {
-    q: 'Is Ojasvi Stamina Booster 100% natural and safe?',
-    a: 'Yes. Ojasvi Stamina Booster is made from carefully sourced Ayurvedic herbs like Ashwagandha, Safed Musli, Shilajit, Gokshura and Kesar, manufactured in a GMP-certified facility with no synthetic hormones or harmful additives. As with any supplement, we recommend consulting your physician before use, especially if you have an existing medical condition.',
+    q: 'Is Ojasvi Strength+ 100% natural and safe?',
+    a: 'Yes. Ojasvi Strength+ is made from carefully sourced Ayurvedic herbs like Ashwagandha, Safed Musli, Shilajit, Gokshura and Kesar, manufactured in a GMP-certified facility with no synthetic hormones or harmful additives. As with any supplement, we recommend consulting your physician before use, especially if you have an existing medical condition.',
   },
   {
     q: 'How should I take the capsules?',
@@ -25,6 +25,6 @@ export const faqs = [
   },
   {
     q: 'Are there any side effects?',
-    a: 'Ojasvi Stamina Booster is formulated with natural herbs and no side effects have been reported by our customers when used as directed. It is not intended to diagnose, treat, cure or prevent any disease.',
+    a: 'Ojasvi Strength+ is formulated with natural herbs and no side effects have been reported by our customers when used as directed. It is not intended to diagnose, treat, cure or prevent any disease.',
   },
 ]

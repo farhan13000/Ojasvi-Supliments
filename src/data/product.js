@@ -1,7 +1,7 @@
 export const brand = {
   name: 'Ojasvi Ayurveda',
   tagline: 'Awaken Your Ojas. Naturally.',
-  whatsappNumber: '919000000000', // TODO: replace with the real business WhatsApp number (country code + number, no +/spaces)
+  whatsappNumber: '916388509921',
   email: 'hello@ojasviayurveda.com',
   address: 'Ojasvi Ayurveda Wellness Pvt. Ltd., Jaunpur, Uttar Pradesh, India',
   instagram: 'https://instagram.com/ojasviayurveda',
@@ -9,20 +9,20 @@ export const brand = {
 }
 
 export const product = {
-  id: 'ojasvi-stamina-booster',
-  name: 'Ojasvi Stamina Booster',
-  subtitle: 'Ayurvedic Vitality Capsules for Adults',
+  id: 'strength-plus',
+  name: 'Strength+',
+  subtitle: 'Ayurvedic Stamina Booster for Adults',
   rating: 4.8,
   ratingCount: 2143,
   shortDescription:
     'A powerful blend of Ashwagandha, Safed Musli, Shilajit, Gokshura & Kesar — formulated to support stamina, strength, energy and everyday vitality, the traditional Ayurvedic way.',
   longDescription:
-    'Ojasvi Stamina Booster is crafted for the modern adult who wants to keep up with a demanding life without compromising on natural wellness. Rooted in classical Ayurvedic formulations and made from carefully sourced herbs, each capsule is designed to help replenish Ojas — the vital energy Ayurveda considers the root of stamina, strength and immunity. No fillers, no synthetic hormones — just time-tested botanicals in a modern capsule.',
+    'Ojasvi Strength+ is crafted for the modern adult who wants to keep up with a demanding life without compromising on natural wellness. Rooted in classical Ayurvedic formulations and made from carefully sourced herbs, each capsule is designed to help replenish Ojas — the vital energy Ayurveda considers the root of stamina, strength and immunity. No fillers, no synthetic hormones — just time-tested botanicals in a modern capsule.',
   disclaimer:
     'This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Individual results may vary. Please consult a qualified physician before use, especially if you have an existing medical condition or are on medication.',
   currency: '₹',
   images: {
-    alt: 'Ojasvi Stamina Booster — Ayurvedic capsule bottle and box packaging',
+    alt: 'Ojasvi Strength+ — Ayurvedic capsule bottle and box packaging',
   },
   badges: ['100% Ayurvedic', 'No Side Effects Reported', 'GMP Certified Facility', 'AYUSH Compliant Labelling'],
   highlights: [

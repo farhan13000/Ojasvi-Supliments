@@ -69,7 +69,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-cream">Explore</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
-              <li><a href="#product" className="transition hover:text-gold-400">Shop Stamina Booster</a></li>
+              <li><a href="#product" className="transition hover:text-gold-400">Shop {product.name}</a></li>
               <li><a href="#benefits" className="transition hover:text-gold-400">Benefits</a></li>
               <li><a href="#ingredients" className="transition hover:text-gold-400">Ingredients</a></li>
               <li><a href="#reviews" className="transition hover:text-gold-400">Customer Reviews</a></li>

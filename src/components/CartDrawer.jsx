@@ -52,7 +52,7 @@ export default function CartDrawer() {
                     <ShoppingBag size={28} />
                   </span>
                   <p className="mt-4 font-display text-lg text-forest-950">Your cart is empty</p>
-                  <p className="mt-1 text-sm text-forest-900/60">Add Ojasvi Stamina Booster to get started.</p>
+                  <p className="mt-1 text-sm text-forest-900/60">Add Ojasvi {product.name} to get started.</p>
                   <button
                     type="button"
                     onClick={() => setCartOpen(false)}

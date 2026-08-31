@@ -1,4 +1,4 @@
-# Ojasvi Ayurveda — Stamina Booster Store
+# Ojasvi Ayurveda — Strength+ Store
 
 A single-product Ayurvedic supplement storefront built with **React + Vite + Tailwind CSS v4 + Framer Motion**. No backend — the cart lives in `localStorage` and checkout hands the order off to **WhatsApp Click-to-Chat**, so orders are confirmed by your team directly in WhatsApp (no database needed).
 
@@ -15,7 +15,7 @@ A single-product Ayurvedic supplement storefront built with **React + Vite + Tai
 
 ## Before you launch — required edits
 
-1. **WhatsApp number** — [`src/data/product.js`](src/data/product.js) → `brand.whatsappNumber`. Use country code + number, digits only (e.g. `919876543210`). This is currently a placeholder and orders will not reach you until it's changed.
+1. **WhatsApp number** — [`src/data/product.js`](src/data/product.js) → `brand.whatsappNumber` is set to `916388509921` (+91 6388 509 921). Double-check this is the correct, WhatsApp-active business number before launch.
 2. **Brand contact details** — same file: `brand.email`, `brand.address`, `brand.instagram`, `brand.facebook`.
 3. **Domain** — replace `https://ojasviayurveda.vercel.app/` throughout [`index.html`](index.html) and [`src/lib/seoData.js`](src/lib/seoData.js) with your real deployed domain once you know it (Vercel gives you one on first deploy; you can update these after).
 4. **OG share image** — [`public/og-image.svg`](public/og-image.svg) is a designed placeholder. Social platforms (Facebook/Twitter) render best with a **raster** image, so swap in a real `1200×630` PNG/JPG product photo and update the `og:image`/`twitter:image` tags in `index.html` accordingly.

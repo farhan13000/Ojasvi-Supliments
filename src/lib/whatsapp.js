@@ -8,7 +8,7 @@ export function buildOrderMessage(items) {
   const lines = []
   lines.push(`Hello ${brand.name}! 🌿`)
   lines.push('')
-  lines.push("I'd like to place an order for Ojasvi Stamina Booster:")
+  lines.push(`I'd like to place an order for Ojasvi ${product.name}:`)
   lines.push('')
 
   let total = 0
@@ -37,7 +37,7 @@ export function buildQuickOrderMessage(pack) {
 }
 
 export function buildInquiryMessage() {
-  return `Hello ${brand.name}! 🌿 I have a question about the Ojasvi Stamina Booster before I order. Could you help me?`
+  return `Hello ${brand.name}! 🌿 I have a question about Ojasvi ${product.name} before I order. Could you help me?`
 }
 
 export function getWhatsAppLink(message) {
