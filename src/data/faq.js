@@ -1,9 +1,5 @@
 export const faqs = [
   {
-    q: 'Which Ojasvi product should I choose?',
-    a: 'Strength+ is built for stamina and physical energy, Focus+ for calm mental clarity without stimulants, and Immunity+ for daily immune support. You can take more than one together — each is formulated to be used on its own or alongside the others.',
-  },
-  {
     q: 'Are Ojasvi products 100% natural and safe?',
     a: 'Yes. Every Ojasvi product is made from carefully sourced Ayurvedic herbs, manufactured in a GMP-certified facility with no synthetic hormones or harmful additives. As with any supplement, we recommend consulting your physician before use, especially if you have an existing medical condition.',
   },

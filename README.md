@@ -1,12 +1,12 @@
-# Ojasvi Ayurveda — Multi-Product Store
+# Ojasvi Ayurveda — Strength+ Store
 
-An Ayurvedic supplement storefront built with **React + Vite + Tailwind CSS v4 + Framer Motion + React Router**, structured as a real multi-page, multi-product site with three fully-built products (`Strength+`, `Focus+`, `Immunity+`). No backend — the cart lives in `localStorage` and checkout/contact hand off to **WhatsApp Click-to-Chat**, so orders and messages are confirmed by your team directly in WhatsApp (no database needed).
+An Ayurvedic supplement storefront built with **React + Vite + Tailwind CSS v4 + Framer Motion + React Router**, currently selling one product — `Strength+` — on a real multi-page site. The product catalog is array-based ([`src/data/products.js`](src/data/products.js)), so more products can be added later without restructuring anything. No backend — the cart lives in `localStorage` and checkout/contact hand off to **WhatsApp Click-to-Chat**, so orders and messages are confirmed by your team directly in WhatsApp (no database needed).
 
 ## Pages
 
-- **Home** (`/`) — brand hero, product range preview, testimonials, CTA
-- **Products** (`/products`) — full catalog grid
-- **Product detail** (`/products/:id`) — 360° visual, pack selector, benefits, ingredients, how-to-use, add to cart / buy on WhatsApp
+- **Home** (`/`) — brand hero featuring Strength+, testimonials, CTA
+- **Products** (`/products`) — catalog grid (currently one product)
+- **Product detail** (`/products/strength-plus`) — 360° visual, pack selector, benefits, ingredients, how-to-use, add to cart / buy on WhatsApp
 - **About Us** (`/about`) — brand story, values, stats
 - **Contact Us** (`/contact`) — contact info + a form that opens WhatsApp with the message pre-filled
 - **FAQ** (`/faq`) — accordion, shared across the whole site
@@ -16,12 +16,12 @@ Navbar matches: **Home · Products · Contact us · About us · FAQ**.
 ## Features
 
 - Animated, theme-consistent Ayurvedic design (forest green / gold / cream palette, `Marcellus` + `Poppins`), branded with the Ojasvi logo
-- Three complete products, each with its own **360° rotating bottle + box visual** (spins on click, drag-to-rotate, sparkle burst, moving highlight) with the product's own name rendered on the label/box art
-- Pack selector (1 / 2 / 3 bottles), quantity stepper, live pricing & discount per product
-- Cart supports **items from multiple products at once**, persisted in `localStorage`; the WhatsApp order message lists each item under its correct product name
+- **360° rotating bottle + box visual** for Strength+ (spins on click, drag-to-rotate, sparkle burst, moving highlight), with the product's name rendered on the label/box art
+- Pack selector (1 / 2 / 3 bottles), quantity stepper, live pricing & discount
+- Cart supports **items from multiple products at once** (ready for when a second product is added), persisted in `localStorage`; the WhatsApp order message lists each item under its correct product name
 - **"Checkout on WhatsApp"** — builds a pre-filled order summary and opens `wa.me` with it, prompting the customer for delivery details
 - Floating WhatsApp chat button site-wide; Contact page form also composes a WhatsApp message (no backend needed)
-- Full SEO: per-page meta tags/canonical via `react-helmet-async`, Open Graph/Twitter cards, `robots.txt`, `sitemap.xml`, `site.webmanifest`, and JSON-LD (`Organization`, `WebSite`, `Product` per product page, `ItemList`, `FAQPage`, `BreadcrumbList`)
+- Full SEO: per-page meta tags/canonical via `react-helmet-async`, Open Graph/Twitter cards, `robots.txt`, `sitemap.xml`, `site.webmanifest`, and JSON-LD (`Organization`, `WebSite`, `Product`, `FAQPage`, `BreadcrumbList`)
 - Fully responsive, keyboard-accessible interactive elements
 
 ## Before you launch — required edits
@@ -36,10 +36,10 @@ Navbar matches: **Home · Products · Contact us · About us · FAQ**.
 
 Add a new entry to the `products` array in [`src/data/products.js`](src/data/products.js):
 
-- **Fully purchasable**: copy the shape of an existing product (badges, highlights, benefits, howToUse, packs, etc.), set `status: 'available'`, and give every pack a unique `id` (prefixed per product, e.g. `focus-1`) — pack ids must be unique across the whole catalog since the cart keys off them.
+- **Fully purchasable**: copy the shape of the `strength-plus` entry (badges, highlights, benefits, howToUse, packs, etc.), set `status: 'available'`, and give every pack a unique `id` (prefixed per product, e.g. `focus-1`) — pack ids must be unique across the whole catalog since the cart keys off them.
 - **Teaser only**: set `status: 'coming-soon'` with just `name`, `subtitle`, `category` and a one-line `teaser` — it renders as a "Coming Soon" card with a WhatsApp "Notify Me" button instead of a buy flow.
 
-It automatically appears in the `/products` grid, the homepage preview, and gets its own `/products/:id` detail page with structured data — no other wiring needed.
+It automatically appears in the `/products` grid and gets its own `/products/:id` detail page with structured data — no other wiring needed. If you want it featured on the homepage hero too, revisit [`src/pages/Home.jsx`](src/pages/Home.jsx) and [`src/components/Hero.jsx`](src/components/Hero.jsx), which currently spotlight a single product.
 
 ## Getting started
 
@@ -59,7 +59,7 @@ npm run preview # serve the production build locally
 
 ## Deploying to Vercel
 
-This project is Vercel-ready out of the box (`vercel.json` included, Vite auto-detected, with a SPA rewrite so client-side routes like `/products/focus-plus` work on refresh/direct link).
+This project is Vercel-ready out of the box (`vercel.json` included, Vite auto-detected, with a SPA rewrite so client-side routes like `/products/strength-plus` work on refresh/direct link).
 
 **Option A — CLI**
 ```bash

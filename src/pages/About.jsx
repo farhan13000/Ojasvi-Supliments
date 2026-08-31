@@ -29,9 +29,8 @@ const values = [
 
 const stats = [
   { value: '10,000+', label: 'Happy Customers' },
-  { value: '3', label: 'Ayurvedic Formulations' },
   { value: '100%', label: 'Natural Herbs' },
-  { value: '4.7★', label: 'Average Rating' },
+  { value: '4.8★', label: 'Average Rating' },
 ]
 
 export default function About() {
@@ -106,7 +105,7 @@ export default function About() {
 
       <section className="relative py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <dl className="grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
+          <dl className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3">
             {stats.map((s) => (
               <div key={s.label}>
                 <dt className="sr-only">{s.label}</dt>

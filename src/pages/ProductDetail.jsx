@@ -4,7 +4,6 @@ import ProductShowcase from '../components/ProductShowcase'
 import Benefits from '../components/Benefits'
 import Ingredients from '../components/Ingredients'
 import HowToUse from '../components/HowToUse'
-import CTASection from '../components/CTASection'
 import { getProductById } from '../data/products'
 import { buildProductJsonLd, buildBreadcrumbJsonLd } from '../lib/seoData'
 
@@ -42,16 +41,6 @@ export default function ProductDetail() {
       <Benefits product={product} />
       <Ingredients product={product} />
       <HowToUse product={product} />
-      <CTASection
-        heading={
-          <>
-            Explore the Rest of the <span className="text-gradient-gold">Ojasvi</span> Range
-          </>
-        }
-        subheading="Stamina, focus, immunity — find the Ayurvedic formulation that fits your day."
-        primaryHref="/products"
-        primaryLabel="View All Products"
-      />
     </>
   )
 }

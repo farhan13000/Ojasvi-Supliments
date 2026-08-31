@@ -14,7 +14,7 @@ export default function Products() {
     <>
       <SEO
         title="Our Products | Ojasvi Ayurveda"
-        description="Browse the full Ojasvi Ayurveda range — natural Ayurvedic supplements for stamina, focus and immunity, made from time-tested botanicals."
+        description="Shop Ojasvi Strength+ — a 100% natural Ayurvedic stamina booster made from time-tested botanicals."
         path="/products"
         jsonLd={[buildItemListJsonLd()]}
       />
