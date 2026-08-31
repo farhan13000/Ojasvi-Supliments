@@ -1,41 +1,33 @@
-import { Helmet } from 'react-helmet-async'
+import { Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import ProductCatalog from './components/ProductCatalog'
-import ProductShowcase from './components/ProductShowcase'
-import Benefits from './components/Benefits'
-import Ingredients from './components/Ingredients'
-import HowToUse from './components/HowToUse'
-import Testimonials from './components/Testimonials'
-import FAQ from './components/FAQ'
-import CTASection from './components/CTASection'
 import Footer from './components/Footer'
 import CartDrawer from './components/CartDrawer'
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton'
-import { buildProductJsonLd, buildItemListJsonLd, buildFaqJsonLd, buildBreadcrumbJsonLd } from './lib/seoData'
+import ScrollToTop from './components/ScrollToTop'
+import Home from './pages/Home'
+import Products from './pages/Products'
+import ProductDetail from './pages/ProductDetail'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import FAQPage from './pages/FAQPage'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
     <CartProvider>
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(buildProductJsonLd())}</script>
-        <script type="application/ld+json">{JSON.stringify(buildItemListJsonLd())}</script>
-        <script type="application/ld+json">{JSON.stringify(buildFaqJsonLd())}</script>
-        <script type="application/ld+json">{JSON.stringify(buildBreadcrumbJsonLd())}</script>
-      </Helmet>
-
+      <ScrollToTop />
       <Navbar />
       <main>
-        <Hero />
-        <ProductCatalog />
-        <ProductShowcase />
-        <Benefits />
-        <Ingredients />
-        <HowToUse />
-        <Testimonials />
-        <FAQ />
-        <CTASection />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
       <Footer />
       <CartDrawer />

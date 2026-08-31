@@ -1,9 +1,6 @@
 import { useCallback, useId, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion'
 import { RotateCw, Sparkles } from 'lucide-react'
-import { getFeaturedProduct } from '../data/products'
-
-const product = getFeaturedProduct()
 
 function randomSparkle() {
   const angle = Math.random() * Math.PI * 2
@@ -17,7 +14,9 @@ function randomSparkle() {
   }
 }
 
-export default function Product360({ productName = `Ojasvi ${product.name}` }) {
+export default function Product360({ product }) {
+  const productName = `Ojasvi ${product.name}`
+  const labelText = product.name.toUpperCase()
   const uid = useId()
   const rotateY = useMotionValue(0)
   const draggingRef = useRef(false)
@@ -115,7 +114,7 @@ export default function Product360({ productName = `Ojasvi ${product.name}` }) {
           />
 
           <motion.div className="preserve-3d relative h-full w-full" style={{ rotateY }}>
-            <PackageArt uid={uid} name={productName} />
+            <PackageArt uid={uid} name={productName} labelText={labelText} />
             <motion.div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 rounded-[2rem] mix-blend-overlay"
@@ -163,7 +162,7 @@ export default function Product360({ productName = `Ojasvi ${product.name}` }) {
   )
 }
 
-function PackageArt({ uid, name }) {
+function PackageArt({ uid, name, labelText }) {
   const gradBottle = `bottleGrad-${uid}`
   const gradCap = `capGrad-${uid}`
   const gradBox = `boxGrad-${uid}`
@@ -216,8 +215,16 @@ function PackageArt({ uid, name }) {
         <text x="112" y="150" fill="#e6c458" fontSize="14" fontFamily="Marcellus, serif" transform="skewY(-11)">
           OJASVI
         </text>
-        <text x="112" y="180" fill="#fbf3e3" fontSize="10" fontFamily="Poppins, sans-serif" fontWeight="600" transform="skewY(-11)">
-          STRENGTH+
+        <text
+          x="112"
+          y="180"
+          fill="#fbf3e3"
+          fontSize={labelText.length > 8 ? '8.5' : '10'}
+          fontFamily="Poppins, sans-serif"
+          fontWeight="600"
+          transform="skewY(-11)"
+        >
+          {labelText}
         </text>
         <circle cx="145" cy="220" r="18" fill="none" stroke="#c9a227" strokeWidth="1.5" transform="skewY(-11)" />
         <text
@@ -248,8 +255,16 @@ function PackageArt({ uid, name }) {
           OJASVI
         </text>
         <line x1="42" y1="172" x2="78" y2="172" stroke="#c9a227" strokeWidth="1.2" />
-        <text x="60" y="189" textAnchor="middle" fill="#7a1f2b" fontSize="11" fontFamily="Poppins, sans-serif" fontWeight="700">
-          STRENGTH+
+        <text
+          x="60"
+          y="189"
+          textAnchor="middle"
+          fill="#7a1f2b"
+          fontSize={labelText.length > 8 ? '9' : '11'}
+          fontFamily="Poppins, sans-serif"
+          fontWeight="700"
+        >
+          {labelText}
         </text>
         <text x="60" y="200" textAnchor="middle" fill="#3a3226" fontSize="6.5" fontFamily="Poppins, sans-serif">
           Ayurvedic Vitality Capsules

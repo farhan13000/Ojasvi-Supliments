@@ -1,10 +1,7 @@
 import { motion } from 'framer-motion'
-import { Flame, Heart, Leaf, Moon, Shield, Zap } from 'lucide-react'
-import { getFeaturedProduct } from '../data/products'
+import { Flame, Heart, Leaf, Moon, Shield, Sparkles, Zap } from 'lucide-react'
 
-const product = getFeaturedProduct()
-
-const iconMap = { zap: Zap, shield: Shield, flame: Flame, heart: Heart, leaf: Leaf, moon: Moon }
+const iconMap = { zap: Zap, shield: Shield, flame: Flame, heart: Heart, leaf: Leaf, moon: Moon, sparkles: Sparkles }
 
 const container = {
   hidden: {},
@@ -15,7 +12,7 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-export default function Benefits() {
+export default function Benefits({ product }) {
   return (
     <section id="benefits" className="relative bg-forest-950 py-20 text-cream sm:py-28">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-noise opacity-[0.06]" />
@@ -27,11 +24,10 @@ export default function Benefits() {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">Why Ojasvi</span>
-          <h2 className="font-display mt-3 text-3xl sm:text-4xl">Six Ways It Supports Your Vitality</h2>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">Why {product.name}</span>
+          <h2 className="font-display mt-3 text-3xl sm:text-4xl">Six Ways It Supports You</h2>
           <p className="mt-4 text-cream/70">
-            Formulated on classical Ayurvedic principles to help your body build sustainable stamina — not a
-            short-lived spike.
+            Formulated on classical Ayurvedic principles for real, sustainable results — not a short-lived spike.
           </p>
         </motion.div>
 

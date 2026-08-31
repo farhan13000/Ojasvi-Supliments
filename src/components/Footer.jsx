@@ -1,10 +1,8 @@
+import { Link } from 'react-router-dom'
 import { Mail, MapPin, MessageCircle } from 'lucide-react'
 import { brand } from '../data/brand'
-import { getFeaturedProduct } from '../data/products'
 import { getWhatsAppLink, buildInquiryMessage } from '../lib/whatsapp'
 import logo from '../assets/Ojasvi_Suppliments_Logo.png'
-
-const product = getFeaturedProduct()
 
 function InstagramIcon(props) {
   return (
@@ -32,9 +30,9 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <a href="#top" className="inline-block">
+            <Link to="/" className="inline-block">
               <img src={logo} alt={brand.name} className="h-16 w-auto" />
-            </a>
+            </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/60">{brand.tagline}</p>
             <div className="mt-5 flex gap-3">
               <a
@@ -70,12 +68,11 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-cream">Explore</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
-              <li><a href="#products" className="transition hover:text-gold-400">Our Products</a></li>
-              <li><a href="#product" className="transition hover:text-gold-400">Shop {product.name}</a></li>
-              <li><a href="#benefits" className="transition hover:text-gold-400">Benefits</a></li>
-              <li><a href="#ingredients" className="transition hover:text-gold-400">Ingredients</a></li>
-              <li><a href="#reviews" className="transition hover:text-gold-400">Customer Reviews</a></li>
-              <li><a href="#faq" className="transition hover:text-gold-400">FAQ</a></li>
+              <li><Link to="/" className="transition hover:text-gold-400">Home</Link></li>
+              <li><Link to="/products" className="transition hover:text-gold-400">Products</Link></li>
+              <li><Link to="/contact" className="transition hover:text-gold-400">Contact us</Link></li>
+              <li><Link to="/about" className="transition hover:text-gold-400">About us</Link></li>
+              <li><Link to="/faq" className="transition hover:text-gold-400">FAQ</Link></li>
             </ul>
           </div>
 
@@ -106,7 +103,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-cream">Disclaimer</h3>
-            <p className="mt-4 text-xs leading-relaxed text-cream/50">{product.disclaimer}</p>
+            <p className="mt-4 text-xs leading-relaxed text-cream/50">{brand.disclaimer}</p>
           </div>
         </div>
 

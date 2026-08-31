@@ -1,10 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Minus, MessageCircle, Plus, ShoppingBag, Trash2, X } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
-import { getFeaturedProduct } from '../data/products'
+import { getProductById } from '../data/products'
 import { buildOrderMessage, getWhatsAppLink } from '../lib/whatsapp'
-
-const product = getFeaturedProduct()
 
 export default function CartDrawer() {
   const { items, totals, isCartOpen, setCartOpen, updateQty, removeFromCart } = useCart()
@@ -54,14 +53,14 @@ export default function CartDrawer() {
                     <ShoppingBag size={28} />
                   </span>
                   <p className="mt-4 font-display text-lg text-forest-950">Your cart is empty</p>
-                  <p className="mt-1 text-sm text-forest-900/60">Add Ojasvi {product.name} to get started.</p>
-                  <button
-                    type="button"
+                  <p className="mt-1 text-sm text-forest-900/60">Explore our range to get started.</p>
+                  <Link
+                    to="/products"
                     onClick={() => setCartOpen(false)}
                     className="focus-ring mt-5 rounded-full bg-forest-900 px-5 py-2.5 text-sm font-semibold text-cream"
                   >
-                    Continue Shopping
-                  </button>
+                    Shop Products
+                  </Link>
                 </div>
               ) : (
                 <ul className="space-y-4">
@@ -80,7 +79,7 @@ export default function CartDrawer() {
                           <span className="font-display text-xs">OJ</span>
                         </div>
                         <div className="flex-1">
-                          <p className="text-sm font-semibold text-forest-950">{product.name}</p>
+                          <p className="text-sm font-semibold text-forest-950">{getProductById(item.productId)?.name ?? 'Product'}</p>
                           <p className="text-xs text-forest-900/60">{item.label} · {item.subLabel}</p>
                           <div className="mt-2 flex items-center justify-between">
                             <div className="inline-flex items-center rounded-full border border-forest-900/15 bg-white">
@@ -103,8 +102,7 @@ export default function CartDrawer() {
                               </button>
                             </div>
                             <p className="text-sm font-bold text-forest-950">
-                              {product.currency}
-                              {(item.price * item.qty).toLocaleString('en-IN')}
+                              ₹{(item.price * item.qty).toLocaleString('en-IN')}
                             </p>
                           </div>
                         </div>
@@ -128,16 +126,12 @@ export default function CartDrawer() {
                 <div className="flex items-center justify-between text-sm text-forest-900/70">
                   <span>You save</span>
                   <span className="font-semibold text-terracotta-600">
-                    {product.currency}
-                    {totals.savings.toLocaleString('en-IN')}
+                    ₹{totals.savings.toLocaleString('en-IN')}
                   </span>
                 </div>
                 <div className="mt-1 flex items-center justify-between text-base font-bold text-forest-950">
                   <span>Subtotal</span>
-                  <span>
-                    {product.currency}
-                    {totals.subtotal.toLocaleString('en-IN')}
-                  </span>
+                  <span>₹{totals.subtotal.toLocaleString('en-IN')}</span>
                 </div>
                 <p className="mt-1 text-xs text-forest-900/50">Shipping & COD confirmed on WhatsApp.</p>
 

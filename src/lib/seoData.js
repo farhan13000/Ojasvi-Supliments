@@ -1,10 +1,10 @@
 import { brand } from '../data/brand'
-import { getAvailableProducts, getFeaturedProduct } from '../data/products'
+import { getAvailableProducts } from '../data/products'
 import { faqs } from '../data/faq'
 
-const product = getFeaturedProduct()
+const SITE_URL = 'https://ojasviayurveda.vercel.app'
 
-export function buildProductJsonLd() {
+export function buildProductJsonLd(product) {
   const cheapest = [...product.packs].sort((a, b) => a.price - b.price)[0]
   const priciest = [...product.packs].sort((a, b) => b.price - a.price)[0]
 
@@ -25,7 +25,7 @@ export function buildProductJsonLd() {
       highPrice: priciest.price,
       offerCount: product.packs.length,
       availability: 'https://schema.org/InStock',
-      url: 'https://ojasviayurveda.vercel.app/#product',
+      url: `${SITE_URL}/products/${product.id}`,
     },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -44,7 +44,7 @@ export function buildItemListJsonLd() {
       '@type': 'ListItem',
       position: idx + 1,
       name: p.name,
-      url: 'https://ojasviayurveda.vercel.app/#product',
+      url: `${SITE_URL}/products/${p.id}`,
     })),
   }
 }
@@ -64,23 +64,22 @@ export function buildFaqJsonLd() {
   }
 }
 
-export function buildBreadcrumbJsonLd() {
+export function buildBreadcrumbJsonLd(product) {
+  const itemListElement = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE_URL}/products` },
+  ]
+  if (product) {
+    itemListElement.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: product.name,
+      item: `${SITE_URL}/products/${product.id}`,
+    })
+  }
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://ojasviayurveda.vercel.app/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: product.name,
-        item: 'https://ojasviayurveda.vercel.app/#product',
-      },
-    ],
+    itemListElement,
   }
 }

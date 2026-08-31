@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Leaf, ShieldCheck, Sparkles, Star } from 'lucide-react'
 import Product360 from './Product360'
-import { getFeaturedProduct } from '../data/products'
 import { getWhatsAppLink, buildInquiryMessage } from '../lib/whatsapp'
-
-const product = getFeaturedProduct()
 
 const stats = [
   { value: '10,000+', label: 'Happy Customers' },
@@ -12,7 +10,7 @@ const stats = [
   { value: '4.8★', label: 'Average Rating' },
 ]
 
-export default function Hero() {
+export default function Hero({ bestseller }) {
   return (
     <section id="top" className="relative overflow-hidden pt-10 pb-20 sm:pt-16 sm:pb-28">
       {/* decorative blobs */}
@@ -38,22 +36,23 @@ export default function Hero() {
           </span>
 
           <h1 className="font-display mt-5 text-4xl leading-[1.1] text-forest-950 sm:text-5xl lg:text-6xl">
-            Reclaim Your <span className="text-gradient-gold">Stamina</span>, the Ayurvedic Way
+            Ayurvedic Wellness, <span className="text-gradient-gold">Crafted</span> for Modern Life
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-forest-900/75 sm:text-lg">
-            {product.shortDescription}
+            A growing range of natural Ayurvedic supplements — stamina, focus, immunity and more — made from
+            time-tested botanicals, with no fillers and no synthetic shortcuts.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <motion.a
-              href="#product"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="focus-ring inline-flex items-center gap-2 rounded-full bg-forest-900 px-7 py-3.5 text-sm font-semibold text-cream shadow-card transition hover:bg-forest-800 sm:text-base"
-            >
-              Shop Ojasvi Now
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+              <Link
+                to="/products"
+                className="focus-ring inline-flex items-center gap-2 rounded-full bg-forest-900 px-7 py-3.5 text-sm font-semibold text-cream shadow-card transition hover:bg-forest-800 sm:text-base"
+              >
+                Explore Our Products
+              </Link>
+            </motion.div>
             <motion.a
               href={getWhatsAppLink(buildInquiryMessage())}
               target="_blank"
@@ -74,7 +73,7 @@ export default function Hero() {
               <Leaf size={16} className="text-forest-700" /> 100% Herbal
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Star size={16} className="fill-gold-500 text-gold-500" /> {product.rating} ({product.ratingCount.toLocaleString('en-IN')} reviews)
+              <Star size={16} className="fill-gold-500 text-gold-500" /> {bestseller.rating} ({bestseller.ratingCount.toLocaleString('en-IN')}+ reviews)
             </span>
           </div>
 
@@ -93,9 +92,15 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
-          className="flex justify-center lg:justify-end"
+          className="flex flex-col items-center gap-3 lg:items-end"
         >
-          <Product360 />
+          <Link
+            to={`/products/${bestseller.id}`}
+            className="focus-ring inline-flex items-center gap-1.5 self-center rounded-full bg-terracotta-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-terracotta-600 lg:self-end"
+          >
+            Bestseller — {bestseller.name}
+          </Link>
+          <Product360 product={bestseller} />
         </motion.div>
       </div>
     </section>

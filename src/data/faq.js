@@ -1,7 +1,11 @@
 export const faqs = [
   {
-    q: 'Is Ojasvi Strength+ 100% natural and safe?',
-    a: 'Yes. Ojasvi Strength+ is made from carefully sourced Ayurvedic herbs like Ashwagandha, Safed Musli, Shilajit, Gokshura and Kesar, manufactured in a GMP-certified facility with no synthetic hormones or harmful additives. As with any supplement, we recommend consulting your physician before use, especially if you have an existing medical condition.',
+    q: 'Which Ojasvi product should I choose?',
+    a: 'Strength+ is built for stamina and physical energy, Focus+ for calm mental clarity without stimulants, and Immunity+ for daily immune support. You can take more than one together — each is formulated to be used on its own or alongside the others.',
+  },
+  {
+    q: 'Are Ojasvi products 100% natural and safe?',
+    a: 'Yes. Every Ojasvi product is made from carefully sourced Ayurvedic herbs, manufactured in a GMP-certified facility with no synthetic hormones or harmful additives. As with any supplement, we recommend consulting your physician before use, especially if you have an existing medical condition.',
   },
   {
     q: 'How should I take the capsules?',
@@ -9,7 +13,7 @@ export const faqs = [
   },
   {
     q: 'How long does it take to see results?',
-    a: 'Ayurvedic formulations work gradually with the body. Most customers report noticeable improvements in energy and stamina within 3–4 weeks of consistent use.',
+    a: 'Ayurvedic formulations work gradually with the body. Most customers report noticeable improvements within 3–4 weeks of consistent use.',
   },
   {
     q: 'How do I place an order?',
@@ -25,6 +29,6 @@ export const faqs = [
   },
   {
     q: 'Are there any side effects?',
-    a: 'Ojasvi Strength+ is formulated with natural herbs and no side effects have been reported by our customers when used as directed. It is not intended to diagnose, treat, cure or prevent any disease.',
+    a: 'Ojasvi products are formulated with natural herbs and no side effects have been reported by our customers when used as directed. They are not intended to diagnose, treat, cure or prevent any disease.',
   },
 ]

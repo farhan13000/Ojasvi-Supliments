@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion'
-import { getFeaturedProduct } from '../data/products'
 
-const product = getFeaturedProduct()
-
-export default function HowToUse() {
+export default function HowToUse({ product }) {
   return (
     <section className="relative bg-cream-soft py-20 sm:py-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -15,7 +12,7 @@ export default function HowToUse() {
           className="mx-auto max-w-2xl text-center"
         >
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest-700">Simple Ritual</span>
-          <h2 className="font-display mt-3 text-3xl text-forest-950 sm:text-4xl">How to Use Ojasvi</h2>
+          <h2 className="font-display mt-3 text-3xl text-forest-950 sm:text-4xl">How to Use {product.name}</h2>
         </motion.div>
 
         <div className="relative mt-14 grid grid-cols-1 gap-10 sm:grid-cols-3">

@@ -1,10 +1,7 @@
 import { motion } from 'framer-motion'
 import { Leaf } from 'lucide-react'
-import { getFeaturedProduct } from '../data/products'
 
-const product = getFeaturedProduct()
-
-export default function Ingredients() {
+export default function Ingredients({ product }) {
   return (
     <section id="ingredients" className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

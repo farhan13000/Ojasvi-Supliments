@@ -3,12 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Check, MessageCircle, Minus, Plus, ShoppingCart, Star } from 'lucide-react'
 import Product360 from './Product360'
 import { useCart } from '../context/CartContext'
-import { getFeaturedProduct, getDefaultPack } from '../data/products'
+import { getDefaultPack } from '../data/products'
 import { buildQuickOrderMessage, getWhatsAppLink } from '../lib/whatsapp'
 
-const product = getFeaturedProduct()
-
-export default function ProductShowcase() {
+export default function ProductShowcase({ product }) {
   const [selectedPack, setSelectedPack] = useState(getDefaultPack(product))
   const [qty, setQty] = useState(1)
   const { addToCart, justAdded } = useCart()
@@ -20,7 +18,7 @@ export default function ProductShowcase() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-2 lg:gap-10">
           <div className="lg:sticky lg:top-28 flex justify-center">
-            <Product360 />
+            <Product360 product={product} />
           </div>
 
           <motion.div
@@ -33,7 +31,7 @@ export default function ProductShowcase() {
               For Adult Men &amp; Women
             </span>
 
-            <h2 className="font-display mt-3 text-3xl text-forest-950 sm:text-4xl">{product.name}</h2>
+            <h1 className="font-display mt-3 text-3xl text-forest-950 sm:text-4xl">{product.name}</h1>
             <p className="mt-1 text-base text-forest-900/60">{product.subtitle}</p>
 
             <div className="mt-3 flex items-center gap-2">
@@ -168,7 +166,7 @@ export default function ProductShowcase() {
               </motion.button>
 
               <motion.a
-                href={getWhatsAppLink(buildQuickOrderMessage({ ...selectedPack, qty }))}
+                href={getWhatsAppLink(buildQuickOrderMessage(product, { ...selectedPack, qty }))}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}

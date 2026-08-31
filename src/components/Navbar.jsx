@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link, NavLink } from 'react-router-dom'
 import { Menu, ShoppingCart, X } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { brand } from '../data/brand'
 import logo from '../assets/Ojasvi_Suppliments_Logo.png'
 
 const links = [
-  { href: '#products', label: 'Shop' },
-  { href: '#benefits', label: 'Benefits' },
-  { href: '#ingredients', label: 'Ingredients' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#faq', label: 'FAQ' },
+  { to: '/', label: 'Home' },
+  { to: '/products', label: 'Products' },
+  { to: '/contact', label: 'Contact us' },
+  { to: '/about', label: 'About us' },
+  { to: '/faq', label: 'FAQ' },
 ]
 
 export default function Navbar() {
@@ -32,19 +33,24 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Primary">
-        <a href="#top" className="focus-ring inline-flex items-center rounded-xl bg-forest-950 px-3 py-1.5">
+        <Link to="/" className="focus-ring inline-flex items-center rounded-xl bg-forest-950 px-3 py-1.5">
           <img src={logo} alt={brand.name} className="h-9 w-auto sm:h-11" />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="focus-ring rounded text-sm font-medium tracking-wide text-forest-900/80 transition hover:text-forest-900"
+            <li key={l.to}>
+              <NavLink
+                to={l.to}
+                end={l.to === '/'}
+                className={({ isActive }) =>
+                  `focus-ring rounded text-sm font-medium tracking-wide transition ${
+                    isActive ? 'text-forest-900' : 'text-forest-900/70 hover:text-forest-900'
+                  }`
+                }
               >
                 {l.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -94,14 +100,19 @@ export default function Navbar() {
           >
             <ul className="flex flex-col gap-1 px-4 py-3">
               {links.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
+                <li key={l.to}>
+                  <NavLink
+                    to={l.to}
+                    end={l.to === '/'}
                     onClick={() => setMenuOpen(false)}
-                    className="focus-ring block rounded-lg px-2 py-2.5 text-base font-medium text-forest-900"
+                    className={({ isActive }) =>
+                      `focus-ring block rounded-lg px-2 py-2.5 text-base font-medium ${
+                        isActive ? 'bg-forest-900/5 text-forest-900' : 'text-forest-900'
+                      }`
+                    }
                   >
                     {l.label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>

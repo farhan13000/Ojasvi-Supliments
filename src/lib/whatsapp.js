@@ -1,24 +1,23 @@
 import { brand } from '../data/brand'
-import { getFeaturedProduct } from '../data/products'
-
-const product = getFeaturedProduct()
+import { getProductById } from '../data/products'
 
 function formatCurrency(amount) {
-  return `${product.currency}${amount.toLocaleString('en-IN')}`
+  return `₹${amount.toLocaleString('en-IN')}`
 }
 
 export function buildOrderMessage(items) {
   const lines = []
   lines.push(`Hello ${brand.name}! 🌿`)
   lines.push('')
-  lines.push(`I'd like to place an order for Ojasvi ${product.name}:`)
+  lines.push("I'd like to place an order:")
   lines.push('')
 
   let total = 0
   items.forEach((item, idx) => {
     const lineTotal = item.price * item.qty
     total += lineTotal
-    lines.push(`${idx + 1}. ${item.label} (${item.subLabel}) x${item.qty} — ${formatCurrency(lineTotal)}`)
+    const productName = getProductById(item.productId)?.name ?? ''
+    lines.push(`${idx + 1}. Ojasvi ${productName} — ${item.label} (${item.subLabel}) x${item.qty} — ${formatCurrency(lineTotal)}`)
   })
 
   lines.push('')
@@ -35,16 +34,25 @@ export function buildOrderMessage(items) {
   return lines.join('\n')
 }
 
-export function buildQuickOrderMessage(pack) {
-  return buildOrderMessage([{ ...pack, qty: 1 }])
+export function buildQuickOrderMessage(product, pack) {
+  return buildOrderMessage([{ ...pack, productId: product.id, qty: pack.qty ?? 1 }])
 }
 
 export function buildInquiryMessage() {
-  return `Hello ${brand.name}! 🌿 I have a question about Ojasvi ${product.name} before I order. Could you help me?`
+  return `Hello ${brand.name}! 🌿 I have a question before I order. Could you help me?`
 }
 
 export function buildComingSoonInquiryMessage(productName) {
   return `Hello ${brand.name}! 🌿 Please notify me when ${productName} launches.`
+}
+
+export function buildContactMessage({ name, phone, message }) {
+  const lines = [`Hello ${brand.name}! 🌿`, '']
+  if (name) lines.push(`Name: ${name}`)
+  if (phone) lines.push(`Phone: ${phone}`)
+  lines.push('')
+  lines.push(message || "I'd like to get in touch.")
+  return lines.join('\n')
 }
 
 export function getWhatsAppLink(message) {
