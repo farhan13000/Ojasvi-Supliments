@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { Leaf } from 'lucide-react'
-import { product } from '../data/product'
+import { getFeaturedProduct } from '../data/products'
+
+const product = getFeaturedProduct()
 
 export default function Ingredients() {
   return (

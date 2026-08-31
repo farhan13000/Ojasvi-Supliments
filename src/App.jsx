@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { CartProvider } from './context/CartContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import ProductCatalog from './components/ProductCatalog'
 import ProductShowcase from './components/ProductShowcase'
 import Benefits from './components/Benefits'
 import Ingredients from './components/Ingredients'
@@ -12,13 +13,14 @@ import CTASection from './components/CTASection'
 import Footer from './components/Footer'
 import CartDrawer from './components/CartDrawer'
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton'
-import { buildProductJsonLd, buildFaqJsonLd, buildBreadcrumbJsonLd } from './lib/seoData'
+import { buildProductJsonLd, buildItemListJsonLd, buildFaqJsonLd, buildBreadcrumbJsonLd } from './lib/seoData'
 
 export default function App() {
   return (
     <CartProvider>
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(buildProductJsonLd())}</script>
+        <script type="application/ld+json">{JSON.stringify(buildItemListJsonLd())}</script>
         <script type="application/ld+json">{JSON.stringify(buildFaqJsonLd())}</script>
         <script type="application/ld+json">{JSON.stringify(buildBreadcrumbJsonLd())}</script>
       </Helmet>
@@ -26,6 +28,7 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <ProductCatalog />
         <ProductShowcase />
         <Benefits />
         <Ingredients />

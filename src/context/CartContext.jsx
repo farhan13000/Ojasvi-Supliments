@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react'
-import { product } from '../data/product'
+import { getFeaturedProduct } from '../data/products'
 
 const CartContext = createContext(null)
 const STORAGE_KEY = 'ojasvi_cart_v1'
@@ -41,7 +41,7 @@ export function CartProvider({ children }) {
         ...prev,
         {
           id: pack.id,
-          productId: product.id,
+          productId: pack.productId ?? getFeaturedProduct().id,
           label: pack.label,
           subLabel: pack.subLabel,
           price: pack.price,

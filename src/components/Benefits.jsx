@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { Flame, Heart, Leaf, Moon, Shield, Zap } from 'lucide-react'
-import { product } from '../data/product'
+import { getFeaturedProduct } from '../data/products'
+
+const product = getFeaturedProduct()
 
 const iconMap = { zap: Zap, shield: Shield, flame: Flame, heart: Heart, leaf: Leaf, moon: Moon }
 

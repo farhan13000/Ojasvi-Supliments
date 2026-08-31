@@ -1,5 +1,8 @@
-import { product, brand } from '../data/product'
+import { brand } from '../data/brand'
+import { getAvailableProducts, getFeaturedProduct } from '../data/products'
 import { faqs } from '../data/faq'
+
+const product = getFeaturedProduct()
 
 export function buildProductJsonLd() {
   const cheapest = [...product.packs].sort((a, b) => a.price - b.price)[0]
@@ -29,6 +32,20 @@ export function buildProductJsonLd() {
       ratingValue: product.rating,
       reviewCount: product.ratingCount,
     },
+  }
+}
+
+export function buildItemListJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${brand.name} Product Range`,
+    itemListElement: getAvailableProducts().map((p, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: p.name,
+      url: 'https://ojasviayurveda.vercel.app/#product',
+    })),
   }
 }
 

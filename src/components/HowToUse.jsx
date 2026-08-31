@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
-import { product } from '../data/product'
+import { getFeaturedProduct } from '../data/products'
+
+const product = getFeaturedProduct()
 
 export default function HowToUse() {
   return (

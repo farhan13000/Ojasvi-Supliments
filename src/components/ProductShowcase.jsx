@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Check, MessageCircle, Minus, Plus, ShoppingCart, Star } from 'lucide-react'
 import Product360 from './Product360'
 import { useCart } from '../context/CartContext'
-import { product, getDefaultPack } from '../data/product'
+import { getFeaturedProduct, getDefaultPack } from '../data/products'
 import { buildQuickOrderMessage, getWhatsAppLink } from '../lib/whatsapp'
 
+const product = getFeaturedProduct()
+
 export default function ProductShowcase() {
-  const [selectedPack, setSelectedPack] = useState(getDefaultPack())
+  const [selectedPack, setSelectedPack] = useState(getDefaultPack(product))
   const [qty, setQty] = useState(1)
   const { addToCart, justAdded } = useCart()
 
@@ -137,7 +139,7 @@ export default function ProductShowcase() {
                 type="button"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => addToCart(selectedPack, qty)}
+                onClick={() => addToCart({ ...selectedPack, productId: product.id }, qty)}
                 className="focus-ring relative inline-flex flex-1 items-center justify-center gap-2 overflow-hidden rounded-full bg-forest-900 px-6 py-4 text-sm font-semibold text-cream shadow-card transition hover:bg-forest-800 sm:text-base"
               >
                 <AnimatePresence mode="wait">

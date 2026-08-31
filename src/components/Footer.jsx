@@ -1,6 +1,10 @@
-import { Leaf, Mail, MapPin, MessageCircle } from 'lucide-react'
-import { brand, product } from '../data/product'
+import { Mail, MapPin, MessageCircle } from 'lucide-react'
+import { brand } from '../data/brand'
+import { getFeaturedProduct } from '../data/products'
 import { getWhatsAppLink, buildInquiryMessage } from '../lib/whatsapp'
+import logo from '../assets/Ojasvi_Suppliments_Logo.png'
+
+const product = getFeaturedProduct()
 
 function InstagramIcon(props) {
   return (
@@ -28,11 +32,8 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 pb-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <a href="#top" className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-400 text-forest-950">
-                <Leaf size={18} strokeWidth={2.5} />
-              </span>
-              <span className="font-display text-xl text-cream">{brand.name}</span>
+            <a href="#top" className="inline-block">
+              <img src={logo} alt={brand.name} className="h-16 w-auto" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/60">{brand.tagline}</p>
             <div className="mt-5 flex gap-3">
@@ -69,6 +70,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-cream">Explore</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
+              <li><a href="#products" className="transition hover:text-gold-400">Our Products</a></li>
               <li><a href="#product" className="transition hover:text-gold-400">Shop {product.name}</a></li>
               <li><a href="#benefits" className="transition hover:text-gold-400">Benefits</a></li>
               <li><a href="#ingredients" className="transition hover:text-gold-400">Ingredients</a></li>

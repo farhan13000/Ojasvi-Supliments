@@ -1,7 +1,9 @@
 import { useCallback, useId, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion'
 import { RotateCw, Sparkles } from 'lucide-react'
-import { product } from '../data/product'
+import { getFeaturedProduct } from '../data/products'
+
+const product = getFeaturedProduct()
 
 function randomSparkle() {
   const angle = Math.random() * Math.PI * 2

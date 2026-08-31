@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Minus, MessageCircle, Plus, ShoppingBag, Trash2, X } from 'lucide-react'
 import { useCart } from '../context/CartContext'
-import { product } from '../data/product'
+import { getFeaturedProduct } from '../data/products'
 import { buildOrderMessage, getWhatsAppLink } from '../lib/whatsapp'
+
+const product = getFeaturedProduct()
 
 export default function CartDrawer() {
   const { items, totals, isCartOpen, setCartOpen, updateQty, removeFromCart } = useCart()

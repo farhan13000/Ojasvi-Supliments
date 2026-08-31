@@ -1,4 +1,7 @@
-import { brand, product } from '../data/product'
+import { brand } from '../data/brand'
+import { getFeaturedProduct } from '../data/products'
+
+const product = getFeaturedProduct()
 
 function formatCurrency(amount) {
   return `${product.currency}${amount.toLocaleString('en-IN')}`
@@ -38,6 +41,10 @@ export function buildQuickOrderMessage(pack) {
 
 export function buildInquiryMessage() {
   return `Hello ${brand.name}! 🌿 I have a question about Ojasvi ${product.name} before I order. Could you help me?`
+}
+
+export function buildComingSoonInquiryMessage(productName) {
+  return `Hello ${brand.name}! 🌿 Please notify me when ${productName} launches.`
 }
 
 export function getWhatsAppLink(message) {

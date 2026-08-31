@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Leaf, Menu, ShoppingCart, X } from 'lucide-react'
+import { Menu, ShoppingCart, X } from 'lucide-react'
 import { useCart } from '../context/CartContext'
-import { brand } from '../data/product'
+import { brand } from '../data/brand'
+import logo from '../assets/Ojasvi_Suppliments_Logo.png'
 
 const links = [
-  { href: '#product', label: 'Shop' },
+  { href: '#products', label: 'Shop' },
   { href: '#benefits', label: 'Benefits' },
   { href: '#ingredients', label: 'Ingredients' },
   { href: '#reviews', label: 'Reviews' },
@@ -31,11 +32,8 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Primary">
-        <a href="#top" className="flex items-center gap-2 focus-ring rounded-lg">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-900 text-gold-400">
-            <Leaf size={18} strokeWidth={2.5} />
-          </span>
-          <span className="font-display text-xl text-forest-950 sm:text-2xl">{brand.name}</span>
+        <a href="#top" className="focus-ring inline-flex items-center rounded-xl bg-forest-950 px-3 py-1.5">
+          <img src={logo} alt={brand.name} className="h-9 w-auto sm:h-11" />
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">

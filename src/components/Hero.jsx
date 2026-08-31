@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
 import { Leaf, ShieldCheck, Sparkles, Star } from 'lucide-react'
 import Product360 from './Product360'
-import { product } from '../data/product'
+import { getFeaturedProduct } from '../data/products'
 import { getWhatsAppLink, buildInquiryMessage } from '../lib/whatsapp'
+
+const product = getFeaturedProduct()
 
 const stats = [
   { value: '10,000+', label: 'Happy Customers' },
