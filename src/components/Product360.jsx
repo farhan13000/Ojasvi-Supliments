@@ -3,6 +3,9 @@ import { motion, useMotionValue, useTransform, animate, AnimatePresence } from '
 import { RotateCw, Sparkles } from 'lucide-react'
 import { brand } from '../data/brand'
 
+const SPIN_DURATION = 3.2
+const SPIN_EASE = [0.45, 0, 0.2, 1]
+
 function randomSparkle() {
   const angle = Math.random() * Math.PI * 2
   const distance = 70 + Math.random() * 90
@@ -19,19 +22,35 @@ export default function Product360({ product }) {
   const productName = `${brand.shortName} ${product.name}`
   const labelText = product.name.toUpperCase()
   const uid = useId()
-  const rotateY = useMotionValue(0)
+  const hasPhoto = Boolean(product.images?.src)
+  const angle = useMotionValue(0)
   const draggingRef = useRef(false)
   const startXRef = useRef(0)
-  const startRotateRef = useRef(0)
+  const startAngleRef = useRef(0)
   const movedRef = useRef(false)
   const [spinning, setSpinning] = useState(false)
   const [sparkles, setSparkles] = useState([])
 
-  const shadowScale = useTransform(rotateY, (v) => {
+  // A single photo can't show its own back, so instead of a literal 3D
+  // flip (which mirrors and vanishes at 90/270deg) we fake a turntable by
+  // squeezing the width and dimming slightly as it "turns away", then
+  // widening and brightening back up — never fully disappears or mirrors.
+  const scaleX = useTransform(angle, (v) => {
+    const rad = (v * Math.PI) / 180
+    return Math.max(0.22, Math.abs(Math.cos(rad)))
+  })
+  const brightness = useTransform(angle, (v) => {
     const rad = (v * Math.PI) / 180
     return 0.82 + 0.18 * Math.abs(Math.cos(rad))
   })
-  const highlightX = useTransform(rotateY, (v) => {
+  const filter = useTransform(brightness, (b) => `brightness(${b})`)
+
+  // Decorative shine/shadow used only by the illustrated SVG fallback.
+  const shadowScale = useTransform(angle, (v) => {
+    const rad = (v * Math.PI) / 180
+    return 0.82 + 0.18 * Math.abs(Math.cos(rad))
+  })
+  const highlightX = useTransform(angle, (v) => {
     const norm = ((v % 360) + 360) % 360
     return `${Math.sin((norm * Math.PI) / 180) * 60 + 20}%`
   })
@@ -48,24 +67,24 @@ export default function Product360({ product }) {
     if (spinning) return
     setSpinning(true)
     burst()
-    animate(rotateY, rotateY.get() + 360, {
-      duration: 1.15,
-      ease: [0.65, 0, 0.35, 1],
+    animate(angle, angle.get() + 360, {
+      duration: SPIN_DURATION,
+      ease: SPIN_EASE,
       onComplete: () => setSpinning(false),
     })
-  }, [rotateY, spinning, burst])
+  }, [angle, spinning, burst])
 
   const settle = useCallback(() => {
-    const current = rotateY.get()
+    const current = angle.get()
     const target = Math.round(current / 360) * 360
-    animate(rotateY, target, { duration: 0.5, ease: 'easeOut' })
-  }, [rotateY])
+    animate(angle, target, { duration: 0.8, ease: 'easeOut' })
+  }, [angle])
 
   const onPointerDown = (e) => {
     draggingRef.current = true
     movedRef.current = false
     startXRef.current = e.clientX
-    startRotateRef.current = rotateY.get()
+    startAngleRef.current = angle.get()
     e.currentTarget.setPointerCapture?.(e.pointerId)
   }
 
@@ -73,7 +92,7 @@ export default function Product360({ product }) {
     if (!draggingRef.current) return
     const delta = e.clientX - startXRef.current
     if (Math.abs(delta) > 4) movedRef.current = true
-    rotateY.set(startRotateRef.current + delta * 0.6)
+    angle.set(startAngleRef.current + delta * 0.6)
   }
 
   const onPointerUp = () => {
@@ -95,60 +114,59 @@ export default function Product360({ product }) {
 
   return (
     <div className="relative flex flex-col items-center select-none">
-      <div className="animate-float-slow">
-        <div
-          className="perspective-1200 relative h-[340px] w-[300px] cursor-grab touch-none active:cursor-grabbing sm:h-[420px] sm:w-[380px]"
-          role="button"
-          tabIndex={0}
-          aria-label={`${productName} product package — drag or press Enter to rotate 360 degrees`}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerLeave={(e) => draggingRef.current && onPointerUp(e)}
-          onKeyDown={onKeyDown}
-        >
-          {/* glow */}
+      <div
+        className="relative h-[340px] w-[300px] cursor-grab touch-none active:cursor-grabbing sm:h-[420px] sm:w-[380px]"
+        role="button"
+        tabIndex={0}
+        aria-label={`${productName} product package — drag or press Enter to rotate 360 degrees`}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerLeave={(e) => draggingRef.current && onPointerUp(e)}
+        onKeyDown={onKeyDown}
+      >
+        {!hasPhoto && (
           <motion.div
             aria-hidden="true"
             className="absolute bottom-2 left-1/2 h-10 w-56 -translate-x-1/2 rounded-full bg-forest-900/30 blur-xl"
             style={{ scaleX: shadowScale }}
           />
+        )}
 
-          <motion.div className="preserve-3d relative h-full w-full" style={{ rotateY }}>
-            {product.images?.src ? (
-              <PhotoArt src={product.images.src} alt={product.images.alt ?? productName} />
-            ) : (
-              <>
-                <PackageArt uid={uid} name={productName} labelText={labelText} />
-                <motion.div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-[2rem] mix-blend-overlay"
-                  style={{
-                    backgroundImage:
-                      'linear-gradient(75deg, transparent 30%, rgba(255,255,255,0.55) 45%, transparent 60%)',
-                    backgroundSize: '250% 100%',
-                    backgroundPositionX: highlightX,
-                  }}
-                />
-              </>
-            )}
-          </motion.div>
+        <motion.div className="relative h-full w-full" style={{ scaleX, filter }}>
+          {hasPhoto ? (
+            <PhotoArt src={product.images.src} alt={product.images.alt ?? productName} />
+          ) : (
+            <>
+              <PackageArt uid={uid} name={productName} labelText={labelText} />
+              <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-[2rem] mix-blend-overlay"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(75deg, transparent 30%, rgba(255,255,255,0.55) 45%, transparent 60%)',
+                  backgroundSize: '250% 100%',
+                  backgroundPositionX: highlightX,
+                }}
+              />
+            </>
+          )}
+        </motion.div>
 
-          <AnimatePresence>
-            {sparkles.map((s) => (
-              <motion.span
-                key={s.id}
-                className="pointer-events-none absolute left-1/2 top-1/2 text-gold-500"
-                initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
-                animate={{ opacity: [0, 1, 0], x: s.x, y: s.y, scale: s.scale }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8, delay: s.delay, ease: 'easeOut' }}
-              >
-                <Sparkles size={16} strokeWidth={2.5} />
-              </motion.span>
-            ))}
-          </AnimatePresence>
-        </div>
+        <AnimatePresence>
+          {sparkles.map((s) => (
+            <motion.span
+              key={s.id}
+              className="pointer-events-none absolute left-1/2 top-1/2 text-gold-500"
+              initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
+              animate={{ opacity: [0, 1, 0], x: s.x, y: s.y, scale: s.scale }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, delay: s.delay, ease: 'easeOut' }}
+            >
+              <Sparkles size={16} strokeWidth={2.5} />
+            </motion.span>
+          ))}
+        </AnimatePresence>
       </div>
 
       <motion.button
@@ -159,11 +177,11 @@ export default function Product360({ product }) {
       >
         <motion.span
           animate={spinning ? { rotate: 360 } : { rotate: 0 }}
-          transition={{ duration: 1.15, ease: [0.65, 0, 0.35, 1] }}
+          transition={{ duration: SPIN_DURATION, ease: SPIN_EASE }}
         >
           <RotateCw size={16} />
         </motion.span>
-        Tap or drag to rotate 360°
+        Tap or drag to rotate
       </motion.button>
     </div>
   )
@@ -175,7 +193,8 @@ function PhotoArt({ src, alt }) {
       src={src}
       alt={alt}
       draggable="false"
-      className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_25px_35px_rgba(11,35,24,0.35)]"
+      fetchPriority="high"
+      className="absolute inset-0 h-full w-full object-contain"
     />
   )
 }

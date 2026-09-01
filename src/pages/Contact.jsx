@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react'
 import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 import { brand } from '../data/brand'
 import { buildContactMessage, getWhatsAppLink } from '../lib/whatsapp'
 
@@ -33,6 +34,8 @@ export default function Contact() {
         description="Get in touch with Ojashvi Supplements — ask a question, check delivery to your city, or place an order. We reply fastest on WhatsApp."
         path="/contact"
       />
+
+      <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Contact Us' }]} />
 
       <section className="relative py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

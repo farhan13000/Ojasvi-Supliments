@@ -3,6 +3,9 @@ import { getFeaturedProduct } from '../data/products'
 
 const CartContext = createContext(null)
 const STORAGE_KEY = 'ojashvi_cart_v1'
+const DETAILS_KEY = 'ojashvi_checkout_details_v1'
+
+const emptyDetails = { name: '', phone: '', address: '', city: '', pincode: '' }
 
 function loadInitialCart() {
   if (typeof window === 'undefined') return []
@@ -17,10 +20,24 @@ function loadInitialCart() {
   }
 }
 
+function loadInitialDetails() {
+  if (typeof window === 'undefined') return emptyDetails
+  try {
+    const raw = window.localStorage.getItem(DETAILS_KEY)
+    if (!raw) return emptyDetails
+    const parsed = JSON.parse(raw)
+    if (typeof parsed !== 'object' || parsed === null) return emptyDetails
+    return { ...emptyDetails, ...parsed }
+  } catch {
+    return emptyDetails
+  }
+}
+
 export function CartProvider({ children }) {
   const [items, setItems] = useState(loadInitialCart)
   const [isCartOpen, setCartOpen] = useState(false)
   const [justAdded, setJustAdded] = useState(false)
+  const [customerDetails, setCustomerDetailsState] = useState(loadInitialDetails)
   const justAddedTimeoutRef = useRef(null)
 
   useEffect(() => {
@@ -30,6 +47,18 @@ export function CartProvider({ children }) {
       // localStorage unavailable (private mode etc.) — silently skip persistence
     }
   }, [items])
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(DETAILS_KEY, JSON.stringify(customerDetails))
+    } catch {
+      // localStorage unavailable — silently skip persistence
+    }
+  }, [customerDetails])
+
+  const updateCustomerDetails = useCallback((patch) => {
+    setCustomerDetailsState((prev) => ({ ...prev, ...patch }))
+  }, [])
 
   const addToCart = useCallback((pack, qty = 1) => {
     setItems((prev) => {
@@ -84,13 +113,15 @@ export function CartProvider({ children }) {
       totals,
       isCartOpen,
       justAdded,
+      customerDetails,
       setCartOpen,
       addToCart,
       updateQty,
       removeFromCart,
       clearCart,
+      updateCustomerDetails,
     }),
-    [items, totals, isCartOpen, justAdded, addToCart, updateQty, removeFromCart, clearCart],
+    [items, totals, isCartOpen, justAdded, customerDetails, addToCart, updateQty, removeFromCart, clearCart, updateCustomerDetails],
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

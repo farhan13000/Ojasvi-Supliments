@@ -5,12 +5,11 @@ import Product360 from './Product360'
 import ProductInfo from './ProductInfo'
 import { useCart } from '../context/CartContext'
 import { getDefaultPack } from '../data/products'
-import { buildQuickOrderMessage, getWhatsAppLink } from '../lib/whatsapp'
 
 export default function ProductShowcase({ product }) {
   const [selectedPack, setSelectedPack] = useState(getDefaultPack(product))
   const [qty, setQty] = useState(1)
-  const { addToCart, justAdded } = useCart()
+  const { addToCart, clearCart, justAdded } = useCart()
 
   const discount = Math.round(((selectedPack.mrp - selectedPack.price) / selectedPack.mrp) * 100)
 
@@ -166,16 +165,18 @@ export default function ProductShowcase({ product }) {
                 </AnimatePresence>
               </motion.button>
 
-              <motion.a
-                href={getWhatsAppLink(buildQuickOrderMessage(product, { ...selectedPack, qty }))}
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                type="button"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
+                onClick={() => {
+                  clearCart()
+                  addToCart({ ...selectedPack, productId: product.id }, qty)
+                }}
                 className="focus-ring inline-flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-forest-700 bg-[#25D366]/10 px-6 py-4 text-sm font-semibold text-forest-900 transition hover:bg-[#25D366]/20 sm:text-base"
               >
                 <MessageCircle size={18} className="text-[#128C7E]" /> Buy Now on WhatsApp
-              </motion.a>
+              </motion.button>
             </div>
 
             <ProductInfo product={product} />

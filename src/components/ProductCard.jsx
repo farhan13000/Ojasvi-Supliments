@@ -10,6 +10,7 @@ export const cardMotion = {
 
 export function ProductCard({ product }) {
   const cheapest = [...product.packs].sort((a, b) => a.price - b.price)[0]
+  const hasPhoto = Boolean(product.images?.src)
 
   return (
     <motion.div variants={cardMotion} whileHover={{ y: -6 }}>
@@ -21,9 +22,19 @@ export function ProductCard({ product }) {
           In Stock
         </span>
 
-        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gold-400/15 text-gold-400 transition group-hover:scale-105">
-          <Sparkles size={28} />
-        </span>
+        {hasPhoto ? (
+          <div className="flex h-32 items-center justify-center">
+            <img
+              src={product.images.src}
+              alt={product.images.alt}
+              className="h-full object-contain transition group-hover:scale-105"
+            />
+          </div>
+        ) : (
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gold-400/15 text-gold-400 transition group-hover:scale-105">
+            <Sparkles size={28} />
+          </span>
+        )}
 
         <div className="mt-5 flex-1">
           <p className="text-xs font-semibold uppercase tracking-wide text-gold-400">{product.category}</p>

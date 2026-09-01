@@ -13,6 +13,7 @@ export function buildProductJsonLd(product) {
     '@type': 'Product',
     name: product.name,
     description: product.shortDescription,
+    image: product.images?.src ? `${SITE_URL}${product.images.src}` : undefined,
     brand: {
       '@type': 'Brand',
       name: brand.name,

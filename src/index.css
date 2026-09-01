@@ -114,14 +114,6 @@ body {
   background-size: 18px 18px;
 }
 
-.perspective-1200 {
-  perspective: 1200px;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
 .focus-ring {
   outline: none;
 }

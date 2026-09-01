@@ -16,21 +16,23 @@ Navbar matches: **Home · Products · Contact us · About us · FAQ**.
 ## Features
 
 - Animated, theme-consistent Ayurvedic design (forest green / gold / cream palette, `Marcellus` + `Poppins`), branded with the Ojashvi Supplements logo
-- **360° rotating bottle + box visual** for Strength+ (spins on click, drag-to-rotate, sparkle burst, moving highlight), with the product's name rendered on the label/box art
-- Pack selector (1 / 2 / 3 bottles), quantity stepper, live pricing & discount
-- Cart supports **items from multiple products at once** (ready for when a second product is added), persisted in `localStorage`; the WhatsApp order message lists each item under its correct product name
-- **"Checkout on WhatsApp"** — builds a pre-filled order summary and opens `wa.me` with it, prompting the customer for delivery details
+- **Real product photography** with a slow, drag-or-click "turntable" rotation (a single photo can't show its own back, so it's a squeeze-and-shade illusion, not a literal 3D flip) — falls back to hand-illustrated bottle/box art for any future product without a real photo
+- Pack selector (1 / 2 / 3 bottles), quantity stepper, live pricing & discount, plus a "Product Information" accordion (ingredients, how-to-use, storage & safety) right in the purchase panel
+- Cart supports **items from multiple products at once** (ready for when a second product is added), persisted in `localStorage`
+- **Delivery-details checkout**: the cart collects name, phone, address, city and pincode (validated, persisted so returning visitors don't retype), then **"Checkout on WhatsApp"** builds a complete pre-filled order message — no blank fields for the customer to fill in inside WhatsApp
 - Floating WhatsApp chat button site-wide; Contact page form also composes a WhatsApp message (no backend needed)
-- Full SEO: per-page meta tags/canonical via `react-helmet-async`, Open Graph/Twitter cards, `robots.txt`, `sitemap.xml`, `site.webmanifest`, and JSON-LD (`Organization`, `WebSite`, `Product`, `FAQPage`, `BreadcrumbList`)
+- Visible breadcrumbs on every inner page, matching the `BreadcrumbList` structured data
+- Route-level code-splitting (`React.lazy`) so the initial JS payload only includes the page actually being viewed
+- Full SEO: per-page meta tags/canonical/robots via `react-helmet-async`, Open Graph/Twitter cards backed by a real photo-based `og-image.png`, `robots.txt`, `sitemap.xml` with `lastmod`, `site.webmanifest`, and JSON-LD (`Organization`, `WebSite`, `Product` with `image`, `FAQPage`, `BreadcrumbList`, `ItemList`)
 - Fully responsive, keyboard-accessible interactive elements
 
 ## Before you launch — required edits
 
 1. **WhatsApp number** — [`src/data/brand.js`](src/data/brand.js) → `whatsappNumber` is set to `916388509921` (+91 6388 509 921). Double-check this is the correct, WhatsApp-active business number before launch. `phoneDisplay` is just the formatted version shown on the Contact page — keep both in sync.
 2. **Brand contact details** — same file: `email`, `address`, `instagram`, `facebook`, `disclaimer`.
-3. **Domain** — replace `https://ojashvisupplements.vercel.app/` in [`index.html`](index.html) and `SITE_URL` in [`src/lib/seoData.js`](src/lib/seoData.js) / [`src/components/SEO.jsx`](src/components/SEO.jsx) with your real deployed domain once you know it.
-4. **OG share image** — [`public/og-image.svg`](public/og-image.svg) is a designed placeholder. Social platforms (Facebook/Twitter) render best with a **raster** image, so swap in a real `1200×630` PNG/JPG and update the `og:image`/`twitter:image` tags in `index.html`.
-5. **Pricing / packs / ingredients** — [`src/data/products.js`](src/data/products.js) holds every product's copy, pricing and pack details.
+3. **Domain** — replace `https://ojashvisupplements.vercel.app/` in [`index.html`](index.html) and `SITE_URL` in [`src/lib/seoData.js`](src/lib/seoData.js) / [`src/components/SEO.jsx`](src/components/SEO.jsx) with your real deployed domain once you know it — then regenerate `public/og-image.png` (or just edit the text) so its embedded `SITE_URL` references match.
+4. **Pricing / packs / ingredients** — [`src/data/products.js`](src/data/products.js) holds every product's copy, pricing and pack details.
+5. **Reviews & ratings** — the testimonials and the `rating`/`ratingCount` fields in `products.js` are illustrative placeholder content, not real customer data. Replace them with genuine reviews before launch — presenting fabricated reviews as real (especially in the `AggregateRating` structured data search engines read) can violate Google's structured-data guidelines and misrepresent the product to customers.
 
 ## Adding another product
 
@@ -78,15 +80,20 @@ vercel --prod # promote to production
 
 ```
 src/
-  assets/         Ojasvi_Suppliments_Logo.png — the site logo (navbar + footer)
-  pages/          Home, Products, ProductDetail, About, Contact, FAQPage, NotFound
-  components/     Navbar, Hero, ProductCard, ProductShowcase, Product360, Benefits,
-                   Ingredients, HowToUse, Testimonials, FAQ, CTASection, Footer,
-                   CartDrawer, WhatsAppFloatingButton, SEO, ScrollToTop
-  context/        CartContext — multi-product cart state + localStorage persistence
+  assets/         Ojasvi_Suppliments_Logo.png (site logo), Strenght_plus_image.png (source
+                   product photo) + strength-plus.webp (trimmed, compressed derivative used
+                   on the site)
+  pages/          Home, Products, ProductDetail, About, Contact, FAQPage, NotFound (lazy-loaded
+                   except Home)
+  components/     Navbar, Hero, Breadcrumb, ProductCard, ProductShowcase, ProductInfo,
+                   Product360, Benefits, Ingredients, HowToUse, Testimonials, FAQ, CTASection,
+                   Footer, CartDrawer, WhatsAppFloatingButton, SEO, ScrollToTop
+  context/        CartContext — multi-product cart state + delivery details, both
+                   persisted in localStorage
   data/           brand.js (contact info), products.js (catalog), testimonials.js, faq.js
-  lib/            whatsapp.js (message builders), seoData.js (JSON-LD builders)
-public/           favicon.svg, og-image.svg, robots.txt, sitemap.xml, site.webmanifest
+  lib/            whatsapp.js (message builders + delivery-details validation),
+                   seoData.js (JSON-LD builders)
+public/           favicon.svg, og-image.png, robots.txt, sitemap.xml, site.webmanifest
 ```
 
 ## Notes

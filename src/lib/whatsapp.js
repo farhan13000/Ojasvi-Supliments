@@ -5,7 +5,24 @@ function formatCurrency(amount) {
   return `₹${amount.toLocaleString('en-IN')}`
 }
 
-export function buildOrderMessage(items) {
+export function validateCustomerDetails(details) {
+  const errors = {}
+  const digits = (details.phone ?? '').replace(/\D/g, '')
+
+  if (!details.name?.trim()) errors.name = 'Please enter your name'
+  if (!digits) errors.phone = 'Please enter your phone number'
+  else if (digits.slice(-10).length < 10 || !/^[6-9]/.test(digits.slice(-10))) {
+    errors.phone = 'Enter a valid 10-digit mobile number'
+  }
+  if (!details.address?.trim()) errors.address = 'Please enter your delivery address'
+  if (!details.city?.trim()) errors.city = 'Please enter your city'
+  if (!details.pincode?.trim()) errors.pincode = 'Please enter your pincode'
+  else if (!/^\d{6}$/.test(details.pincode.trim())) errors.pincode = 'Enter a valid 6-digit pincode'
+
+  return { valid: Object.keys(errors).length === 0, errors }
+}
+
+export function buildOrderMessage(items, details) {
   const lines = []
   lines.push(`Hello ${brand.name}! 🌿`)
   lines.push('')
@@ -23,19 +40,16 @@ export function buildOrderMessage(items) {
   lines.push('')
   lines.push(`*Total: ${formatCurrency(total)}*`)
   lines.push('')
-  lines.push('📍 Please share your delivery details:')
-  lines.push('Name: ')
-  lines.push('Full Address: ')
-  lines.push('City & Pincode: ')
-  lines.push('Phone Number: ')
+  lines.push('📍 Delivery Details:')
+  lines.push(`Name: ${details.name}`)
+  lines.push(`Phone: ${details.phone}`)
+  lines.push(`Address: ${details.address}`)
+  lines.push(`City: ${details.city}`)
+  lines.push(`Pincode: ${details.pincode}`)
   lines.push('')
   lines.push('Please confirm availability, delivery timeline & Cash on Delivery for my location. Thank you!')
 
   return lines.join('\n')
-}
-
-export function buildQuickOrderMessage(product, pack) {
-  return buildOrderMessage([{ ...pack, productId: product.id, qty: pack.qty ?? 1 }])
 }
 
 export function buildInquiryMessage() {

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Award, Leaf, ShieldCheck, Sparkles } from 'lucide-react'
 import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 import CTASection from '../components/CTASection'
 import { brand } from '../data/brand'
 
@@ -41,6 +42,8 @@ export default function About() {
         description="Ojashvi Supplements crafts natural Ayurvedic supplements rooted in classical formulations — no fillers, no synthetic shortcuts. Learn about our mission and values."
         path="/about"
       />
+
+      <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'About Us' }]} />
 
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div aria-hidden="true" className="animate-blob absolute -left-24 -top-24 h-72 w-72 bg-forest-600/15 blur-3xl" />
