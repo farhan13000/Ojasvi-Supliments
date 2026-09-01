@@ -4,7 +4,7 @@ export const brand = {
   tagline: 'Awaken Your Ojas. Naturally.',
   whatsappNumber: '916388509921',
   phoneDisplay: '+91 6388 509 921',
-  email: 'hello@ojashvisupplements.com',
+  email: 'ojasvisuppliments@gmail.com',
   address: 'Ojashvi Supplements Pvt. Ltd., Jaunpur, Uttar Pradesh, India',
   instagram: 'https://instagram.com/ojashvisupplements',
   facebook: 'https://facebook.com/ojashvisupplements',

@@ -18,12 +18,6 @@ export const testimonials = [
     text: 'Good quality product, packaging feels premium and the WhatsApp ordering was super convenient. Delivery took 4 days to my city.',
   },
   {
-    name: 'Vikram Singh',
-    location: 'Jaipur, Rajasthan',
-    rating: 5,
-    text: 'My father (52) has been using it for his daily energy levels and he loves it. Ordered a 3-bottle pack this time via WhatsApp, process was smooth.',
-  },
-  {
     name: 'Manoj Tiwari',
     location: 'Lucknow, Uttar Pradesh',
     rating: 5,
