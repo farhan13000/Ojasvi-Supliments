@@ -1,4 +1,4 @@
-# Ojasvi Ayurveda — Strength+ Store
+# Ojashvi Supplements — Strength+ Store
 
 An Ayurvedic supplement storefront built with **React + Vite + Tailwind CSS v4 + Framer Motion + React Router**, currently selling one product — `Strength+` — on a real multi-page site. The product catalog is array-based ([`src/data/products.js`](src/data/products.js)), so more products can be added later without restructuring anything. No backend — the cart lives in `localStorage` and checkout/contact hand off to **WhatsApp Click-to-Chat**, so orders and messages are confirmed by your team directly in WhatsApp (no database needed).
 
@@ -15,7 +15,7 @@ Navbar matches: **Home · Products · Contact us · About us · FAQ**.
 
 ## Features
 
-- Animated, theme-consistent Ayurvedic design (forest green / gold / cream palette, `Marcellus` + `Poppins`), branded with the Ojasvi logo
+- Animated, theme-consistent Ayurvedic design (forest green / gold / cream palette, `Marcellus` + `Poppins`), branded with the Ojashvi Supplements logo
 - **360° rotating bottle + box visual** for Strength+ (spins on click, drag-to-rotate, sparkle burst, moving highlight), with the product's name rendered on the label/box art
 - Pack selector (1 / 2 / 3 bottles), quantity stepper, live pricing & discount
 - Cart supports **items from multiple products at once** (ready for when a second product is added), persisted in `localStorage`; the WhatsApp order message lists each item under its correct product name
@@ -28,7 +28,7 @@ Navbar matches: **Home · Products · Contact us · About us · FAQ**.
 
 1. **WhatsApp number** — [`src/data/brand.js`](src/data/brand.js) → `whatsappNumber` is set to `916388509921` (+91 6388 509 921). Double-check this is the correct, WhatsApp-active business number before launch. `phoneDisplay` is just the formatted version shown on the Contact page — keep both in sync.
 2. **Brand contact details** — same file: `email`, `address`, `instagram`, `facebook`, `disclaimer`.
-3. **Domain** — replace `https://ojasviayurveda.vercel.app/` in [`index.html`](index.html) and `SITE_URL` in [`src/lib/seoData.js`](src/lib/seoData.js) / [`src/components/SEO.jsx`](src/components/SEO.jsx) with your real deployed domain once you know it.
+3. **Domain** — replace `https://ojashvisupplements.vercel.app/` in [`index.html`](index.html) and `SITE_URL` in [`src/lib/seoData.js`](src/lib/seoData.js) / [`src/components/SEO.jsx`](src/components/SEO.jsx) with your real deployed domain once you know it.
 4. **OG share image** — [`public/og-image.svg`](public/og-image.svg) is a designed placeholder. Social platforms (Facebook/Twitter) render best with a **raster** image, so swap in a real `1200×630` PNG/JPG and update the `og:image`/`twitter:image` tags in `index.html`.
 5. **Pricing / packs / ingredients** — [`src/data/products.js`](src/data/products.js) holds every product's copy, pricing and pack details.
 

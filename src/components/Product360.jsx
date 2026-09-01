@@ -1,6 +1,7 @@
 import { useCallback, useId, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion'
 import { RotateCw, Sparkles } from 'lucide-react'
+import { brand } from '../data/brand'
 
 function randomSparkle() {
   const angle = Math.random() * Math.PI * 2
@@ -15,7 +16,7 @@ function randomSparkle() {
 }
 
 export default function Product360({ product }) {
-  const productName = `Ojasvi ${product.name}`
+  const productName = `${brand.shortName} ${product.name}`
   const labelText = product.name.toUpperCase()
   const uid = useId()
   const rotateY = useMotionValue(0)
@@ -114,17 +115,23 @@ export default function Product360({ product }) {
           />
 
           <motion.div className="preserve-3d relative h-full w-full" style={{ rotateY }}>
-            <PackageArt uid={uid} name={productName} labelText={labelText} />
-            <motion.div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-[2rem] mix-blend-overlay"
-              style={{
-                backgroundImage:
-                  'linear-gradient(75deg, transparent 30%, rgba(255,255,255,0.55) 45%, transparent 60%)',
-                backgroundSize: '250% 100%',
-                backgroundPositionX: highlightX,
-              }}
-            />
+            {product.images?.src ? (
+              <PhotoArt src={product.images.src} alt={product.images.alt ?? productName} />
+            ) : (
+              <>
+                <PackageArt uid={uid} name={productName} labelText={labelText} />
+                <motion.div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-[2rem] mix-blend-overlay"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(75deg, transparent 30%, rgba(255,255,255,0.55) 45%, transparent 60%)',
+                    backgroundSize: '250% 100%',
+                    backgroundPositionX: highlightX,
+                  }}
+                />
+              </>
+            )}
           </motion.div>
 
           <AnimatePresence>
@@ -159,6 +166,17 @@ export default function Product360({ product }) {
         Tap or drag to rotate 360°
       </motion.button>
     </div>
+  )
+}
+
+function PhotoArt({ src, alt }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      draggable="false"
+      className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_25px_35px_rgba(11,35,24,0.35)]"
+    />
   )
 }
 
@@ -213,7 +231,7 @@ function PackageArt({ uid, name, labelText }) {
         <polygon points="0,60 90,20 190,55 100,95" fill={`url(#${gradBoxTop})`} />
         <polygon points="100,95 190,55 190,245 100,290" fill={`url(#${gradBox})`} />
         <text x="112" y="150" fill="#e6c458" fontSize="14" fontFamily="Marcellus, serif" transform="skewY(-11)">
-          OJASVI
+          OJASHVI
         </text>
         <text
           x="112"
@@ -252,7 +270,7 @@ function PackageArt({ uid, name, labelText }) {
         />
         <rect x="30" y="120" width="60" height="150" rx="10" fill={`url(#${gradLabel})`} stroke="#c9a227" strokeWidth="1.2" />
         <text x="60" y="160" textAnchor="middle" fill="#123524" fontSize="17" fontFamily="Marcellus, serif">
-          OJASVI
+          OJASHVI
         </text>
         <line x1="42" y1="172" x2="78" y2="172" stroke="#c9a227" strokeWidth="1.2" />
         <text

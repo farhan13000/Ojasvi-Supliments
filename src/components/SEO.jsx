@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
-const SITE_URL = 'https://ojasviayurveda.vercel.app'
+const SITE_URL = 'https://ojashvisupplements.vercel.app'
 
 export default function SEO({ title, description, path = '/', jsonLd = [] }) {
   const url = `${SITE_URL}${path}`

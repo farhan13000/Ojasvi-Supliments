@@ -17,7 +17,7 @@ export function buildOrderMessage(items) {
     const lineTotal = item.price * item.qty
     total += lineTotal
     const productName = getProductById(item.productId)?.name ?? ''
-    lines.push(`${idx + 1}. Ojasvi ${productName} — ${item.label} (${item.subLabel}) x${item.qty} — ${formatCurrency(lineTotal)}`)
+    lines.push(`${idx + 1}. ${brand.shortName} ${productName} — ${item.label} (${item.subLabel}) x${item.qty} — ${formatCurrency(lineTotal)}`)
   })
 
   lines.push('')

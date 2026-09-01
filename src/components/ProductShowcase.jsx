@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, MessageCircle, Minus, Plus, ShoppingCart, Star } from 'lucide-react'
 import Product360 from './Product360'
+import ProductInfo from './ProductInfo'
 import { useCart } from '../context/CartContext'
 import { getDefaultPack } from '../data/products'
 import { buildQuickOrderMessage, getWhatsAppLink } from '../lib/whatsapp'
@@ -177,7 +178,7 @@ export default function ProductShowcase({ product }) {
               </motion.a>
             </div>
 
-            <p className="mt-4 text-xs leading-relaxed text-forest-900/50">{product.disclaimer}</p>
+            <ProductInfo product={product} />
           </motion.div>
         </div>
       </div>

@@ -8,7 +8,7 @@ import { buildContactMessage, getWhatsAppLink } from '../lib/whatsapp'
 const infoCards = [
   { icon: MapPin, label: 'Address', value: brand.address },
   { icon: Mail, label: 'Email', value: brand.email, href: `mailto:${brand.email}` },
-  { icon: Phone, label: 'WhatsApp / Phone', value: brand.phoneDisplay, href: getWhatsAppLink('Hello Ojasvi Ayurveda! 🌿') },
+  { icon: Phone, label: 'WhatsApp / Phone', value: brand.phoneDisplay, href: getWhatsAppLink('Hello Ojashvi Supplements! 🌿') },
 ]
 
 export default function Contact() {
@@ -29,8 +29,8 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Contact Us | Ojasvi Ayurveda"
-        description="Get in touch with Ojasvi Ayurveda — ask a question, check delivery to your city, or place an order. We reply fastest on WhatsApp."
+        title="Contact Us | Ojashvi Supplements"
+        description="Get in touch with Ojashvi Supplements — ask a question, check delivery to your city, or place an order. We reply fastest on WhatsApp."
         path="/contact"
       />
 
@@ -76,7 +76,7 @@ export default function Contact() {
               ))}
 
               <a
-                href={getWhatsAppLink('Hello Ojasvi Ayurveda! 🌿')}
+                href={getWhatsAppLink('Hello Ojashvi Supplements! 🌿')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="focus-ring flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 text-sm font-semibold text-white shadow-card transition hover:bg-[#1ebe57]"

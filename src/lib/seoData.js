@@ -2,7 +2,7 @@ import { brand } from '../data/brand'
 import { getAvailableProducts } from '../data/products'
 import { faqs } from '../data/faq'
 
-const SITE_URL = 'https://ojasviayurveda.vercel.app'
+const SITE_URL = 'https://ojashvisupplements.vercel.app'
 
 export function buildProductJsonLd(product) {
   const cheapest = [...product.packs].sort((a, b) => a.price - b.price)[0]

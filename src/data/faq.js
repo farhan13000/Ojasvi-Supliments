@@ -1,7 +1,7 @@
 export const faqs = [
   {
-    q: 'Are Ojasvi products 100% natural and safe?',
-    a: 'Yes. Every Ojasvi product is made from carefully sourced Ayurvedic herbs, manufactured in a GMP-certified facility with no synthetic hormones or harmful additives. As with any supplement, we recommend consulting your physician before use, especially if you have an existing medical condition.',
+    q: 'Are Ojashvi products 100% natural and safe?',
+    a: 'Yes. Every Ojashvi product is made from carefully sourced Ayurvedic herbs, manufactured in a GMP-certified facility with no synthetic hormones or harmful additives. As with any supplement, we recommend consulting your physician before use, especially if you have an existing medical condition.',
   },
   {
     q: 'How should I take the capsules?',
@@ -25,6 +25,6 @@ export const faqs = [
   },
   {
     q: 'Are there any side effects?',
-    a: 'Ojasvi products are formulated with natural herbs and no side effects have been reported by our customers when used as directed. They are not intended to diagnose, treat, cure or prevent any disease.',
+    a: 'Ojashvi products are formulated with natural herbs and no side effects have been reported by our customers when used as directed. They are not intended to diagnose, treat, cure or prevent any disease.',
   },
 ]

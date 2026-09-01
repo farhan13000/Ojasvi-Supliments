@@ -31,7 +31,7 @@ export default function ProductDetail() {
   return (
     <>
       <SEO
-        title={`Ojasvi ${product.name} | ${product.subtitle}`}
+        title={`Ojashvi ${product.name} | ${product.subtitle}`}
         description={product.shortDescription}
         path={`/products/${product.id}`}
         jsonLd={[buildProductJsonLd(product), buildBreadcrumbJsonLd(product)]}

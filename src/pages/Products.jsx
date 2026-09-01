@@ -13,8 +13,8 @@ export default function Products() {
   return (
     <>
       <SEO
-        title="Our Products | Ojasvi Ayurveda"
-        description="Shop Ojasvi Strength+ — a 100% natural Ayurvedic stamina booster made from time-tested botanicals."
+        title="Our Products | Ojashvi Supplements"
+        description="Shop Ojashvi Strength+ — a 100% natural Ayurvedic stamina booster made from time-tested botanicals."
         path="/products"
         jsonLd={[buildItemListJsonLd()]}
       />
@@ -30,7 +30,7 @@ export default function Products() {
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600">Our Range</span>
             <h1 className="font-display mt-3 text-4xl text-forest-950 sm:text-5xl">Our Products</h1>
             <p className="mt-4 text-forest-900/70">
-              Every Ojasvi formulation is built on classical Ayurvedic principles — 100% natural, no fillers, no
+              Every Ojashvi formulation is built on classical Ayurvedic principles — 100% natural, no fillers, no
               synthetic shortcuts.
             </p>
           </motion.div>

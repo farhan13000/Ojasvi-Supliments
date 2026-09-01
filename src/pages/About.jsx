@@ -37,8 +37,8 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About Us | Ojasvi Ayurveda"
-        description="Ojasvi Ayurveda crafts natural Ayurvedic supplements rooted in classical formulations — no fillers, no synthetic shortcuts. Learn about our mission and values."
+        title="About Us | Ojashvi Supplements"
+        description="Ojashvi Supplements crafts natural Ayurvedic supplements rooted in classical formulations — no fillers, no synthetic shortcuts. Learn about our mission and values."
         path="/about"
       />
 
@@ -60,7 +60,7 @@ export default function About() {
               today.
             </p>
             <p className="mt-4 text-base leading-relaxed text-forest-900/75 sm:text-lg">
-              Every Ojasvi formulation starts from classical Ayurvedic references, not marketing trends — sourced
+              Every Ojashvi formulation starts from classical Ayurvedic references, not marketing trends — sourced
               botanicals, honest dosing, and zero synthetic hormones or fillers. What you read on the label is what
               is actually inside the capsule.
             </p>

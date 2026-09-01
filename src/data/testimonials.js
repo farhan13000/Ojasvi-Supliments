@@ -3,7 +3,7 @@ export const testimonials = [
     name: 'Rohit Sharma',
     location: 'Pune, Maharashtra',
     rating: 5,
-    text: 'Been taking Ojasvi for 2 months now. I genuinely feel more energetic through the day and my gym recovery has improved. Tastes/smells authentic — you can tell it is real Ayurveda.',
+    text: 'Been taking Ojashvi for 2 months now. I genuinely feel more energetic through the day and my gym recovery has improved. Tastes/smells authentic — you can tell it is real Ayurveda.',
   },
   {
     name: 'Ankit Verma',

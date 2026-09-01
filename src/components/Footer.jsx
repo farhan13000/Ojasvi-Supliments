@@ -39,7 +39,7 @@ export default function Footer() {
                 href={brand.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Ojasvi Ayurveda on Instagram"
+                aria-label={`${brand.name} on Instagram`}
                 className="focus-ring flex h-9 w-9 items-center justify-center rounded-full bg-cream/10 transition hover:bg-gold-400 hover:text-forest-950"
               >
                 <InstagramIcon />
@@ -48,7 +48,7 @@ export default function Footer() {
                 href={brand.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Ojasvi Ayurveda on Facebook"
+                aria-label={`${brand.name} on Facebook`}
                 className="focus-ring flex h-9 w-9 items-center justify-center rounded-full bg-cream/10 transition hover:bg-gold-400 hover:text-forest-950"
               >
                 <FacebookIcon />
@@ -57,7 +57,7 @@ export default function Footer() {
                 href={getWhatsAppLink(buildInquiryMessage())}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Chat with Ojasvi Ayurveda on WhatsApp"
+                aria-label={`Chat with ${brand.name} on WhatsApp`}
                 className="focus-ring flex h-9 w-9 items-center justify-center rounded-full bg-cream/10 transition hover:bg-gold-400 hover:text-forest-950"
               >
                 <MessageCircle size={16} />

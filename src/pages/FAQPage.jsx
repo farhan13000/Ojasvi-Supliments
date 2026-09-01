@@ -7,8 +7,8 @@ export default function FAQPage() {
   return (
     <>
       <SEO
-        title="FAQ | Ojasvi Ayurveda"
-        description="Answers to common questions about Ojasvi Ayurveda products — usage, ordering, delivery, Cash on Delivery, and safety."
+        title="FAQ | Ojashvi Supplements"
+        description="Answers to common questions about Ojashvi Supplements products — usage, ordering, delivery, Cash on Delivery, and safety."
         path="/faq"
         jsonLd={[buildFaqJsonLd()]}
       />

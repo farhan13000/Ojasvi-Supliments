@@ -6,10 +6,10 @@ import { getWhatsAppLink, buildInquiryMessage } from '../lib/whatsapp'
 export default function CTASection({
   heading = (
     <>
-      Ready to Feel the <span className="text-gradient-gold">Ojasvi</span> Difference?
+      Ready to Feel the <span className="text-gradient-gold">Ojashvi</span> Difference?
     </>
   ),
-  subheading = 'Join thousands who trust Ojasvi for natural, Ayurvedic wellness. Order today and pay on delivery.',
+  subheading = 'Join thousands who trust Ojashvi for natural, Ayurvedic wellness. Order today and pay on delivery.',
   primaryHref = '/products',
   primaryLabel = 'Shop Now',
 }) {

@@ -15,7 +15,7 @@ export default function Ingredients({ product }) {
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600">
             Rooted in Tradition
           </span>
-          <h2 className="font-display mt-3 text-3xl text-forest-950 sm:text-4xl">The Herbs Behind Ojasvi</h2>
+          <h2 className="font-display mt-3 text-3xl text-forest-950 sm:text-4xl">The Herbs Behind Ojashvi</h2>
           <p className="mt-4 text-forest-900/70">
             Every capsule is a blend of six time-tested Ayurvedic botanicals, sourced and dosed with care.
           </p>

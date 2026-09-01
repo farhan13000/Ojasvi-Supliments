@@ -49,7 +49,7 @@ export default function Hero({ bestseller: product }) {
                 to={`/products/${product.id}`}
                 className="focus-ring inline-flex items-center gap-2 rounded-full bg-forest-900 px-7 py-3.5 text-sm font-semibold text-cream shadow-card transition hover:bg-forest-800 sm:text-base"
               >
-                Shop Ojasvi Now
+                Shop Ojashvi Now
               </Link>
             </motion.div>
             <motion.a

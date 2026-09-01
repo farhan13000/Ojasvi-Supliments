@@ -2,6 +2,8 @@
 // add more by copying this shape; the /products grid, product detail
 // pages, cart and structured data all pick new entries up automatically.
 
+import strengthPlusImage from '../assets/strength-plus.webp'
+
 export const products = [
   {
     id: 'strength-plus',
@@ -12,16 +14,20 @@ export const products = [
     rating: 4.8,
     ratingCount: 2143,
     shortDescription:
-      'A powerful blend of Ashwagandha, Safed Musli, Shilajit, Gokshura & Kesar — formulated to support stamina, strength, energy and everyday vitality, the traditional Ayurvedic way.',
+      'A proprietary blend of 17 powerful Ayurvedic herbs — including Ashwagandha, Safed Musli, Shilajit, Gokshura & Kesar — formulated to support stamina, strength, energy and everyday vitality, the traditional Ayurvedic way.',
     longDescription:
-      'Ojasvi Strength+ is crafted for the modern adult who wants to keep up with a demanding life without compromising on natural wellness. Rooted in classical Ayurvedic formulations and made from carefully sourced herbs, each capsule is designed to help replenish Ojas — the vital energy Ayurveda considers the root of stamina, strength and immunity. No fillers, no synthetic hormones — just time-tested botanicals in a modern capsule.',
+      'Ojashvi Strength+ is crafted for the modern adult who wants to keep up with a demanding life without compromising on natural wellness. Built on 17 powerful Ayurvedic herbs and rooted in classical formulations, each capsule is designed to help replenish Ojas — the vital energy Ayurveda considers the root of stamina, strength and immunity. No fillers, no synthetic hormones — just time-tested botanicals in a modern capsule.',
     disclaimer:
       'This product is a dietary supplement and is not intended to diagnose, treat, cure or prevent any disease. Individual results may vary. Please consult a qualified physician before use, especially if you have an existing medical condition or are on medication.',
     currency: '₹',
+    netQuantity: '30 Capsules per bottle (Nutraceutical)',
+    storageInstructions: 'Store in a cool, dry place away from direct sunlight. Keep out of reach of children.',
     images: {
-      alt: 'Ojasvi Strength+ — Ayurvedic capsule bottle and box packaging',
+      src: strengthPlusImage,
+      alt: 'Ojashvi Strength+ — Ayurvedic stamina booster capsule bottle, 30 capsules, 17 powerful herbs',
     },
-    badges: ['100% Ayurvedic', 'No Side Effects Reported', 'GMP Certified Facility', 'AYUSH Compliant Labelling'],
+    badges: ['17 Powerful Herbs', 'AYUSH Compliant', '100% Herbal', 'GMP Certified Facility'],
+    ingredientsNote: 'Featured herbs from our proprietary blend of 17 Ayurvedic botanicals:',
     highlights: [
       { label: 'Ashwagandha', desc: 'Root extract for strength & stress resilience' },
       { label: 'Safed Musli', desc: 'Traditional herb for stamina & recovery' },

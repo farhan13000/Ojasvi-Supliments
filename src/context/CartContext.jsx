@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState, useCal
 import { getFeaturedProduct } from '../data/products'
 
 const CartContext = createContext(null)
-const STORAGE_KEY = 'ojasvi_cart_v1'
+const STORAGE_KEY = 'ojashvi_cart_v1'
 
 function loadInitialCart() {
   if (typeof window === 'undefined') return []
