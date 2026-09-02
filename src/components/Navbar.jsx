@@ -34,7 +34,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Primary">
         <Link to="/" className="focus-ring inline-flex items-center rounded-xl bg-forest-950 px-3 py-1.5">
-          <img src={logo} alt={brand.name} className="h-9 w-auto sm:h-11" />
+          <img src={logo} alt={`${brand.name} Logo - Ayurvedic Stamina Booster`} className="h-9 w-auto sm:h-11" />
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">

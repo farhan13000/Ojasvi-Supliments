@@ -33,6 +33,50 @@ export function buildProductJsonLd(product) {
       ratingValue: product.rating,
       reviewCount: product.ratingCount,
     },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: product.rating,
+        bestRating: '5',
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Verified Customer',
+      },
+    },
+  }
+}
+
+export function buildOrganizationJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: brand.name,
+    url: SITE_URL,
+    logo: `${SITE_URL}/favicon.svg`,
+    sameAs: [],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: '+91-6388-509-921',
+      areaServed: 'IN',
+      availableLanguage: ['en', 'hi'],
+    },
+  }
+}
+
+export function buildWebSiteJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: brand.name,
+    url: SITE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE_URL}/products?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
   }
 }
 
